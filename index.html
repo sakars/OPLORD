@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body onload="init();">
+
+<canvas id="myCanvas" width="2000" style="background-color:black"></canvas>
+<script>
+  var img=new Image();
+  img.src="LV.jpg";
+  ctx=undefined;
+  function init(){
+    ctx=myCanvas.getContext("2d");
+    var img=new Image();
+    img.src="LV.jpg";
+    var acth=img.height*(myCanvas.width/img.width);
+    var width=8.7;
+    var height=2.83;
+    var left=20.2;
+    var top=58.29166;
+    myCanvas.height=acth;
+    ctx.drawImage(img,0,0,myCanvas.width,acth);
+    ctx.fillRect((23.5123491-left)*myCanvas.width/width-2,(top-56.94951)*myCanvas.height/height-2,4,4);
+    ctx.fillRect((21.0919936-left)*myCanvas.width/width-2,(top-56.5531409)*myCanvas.height/height-2,4,4);
+    setTimeout(update,10);
+  }
+  function update(){
+
+    setTimeout(update,10);
+  }
+</script>
+
+</body>
+</html>
