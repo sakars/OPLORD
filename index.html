@@ -7,16 +7,19 @@
 <body onload="init();">
 <script src="recycler.js"></script>
 <script src="Stops.js"></script>
-<canvas id="myCanvas" width="1000" style="background-color:black"></canvas>
+
+<canvas id="myCanvas" width="4000" style="background-color:black"></canvas>
+
 <script>
   var img=new Image();
   img.src="LV.jpg";
   ctx=undefined;
   var stops;
-  var width=8.9;
-  var height=2.83;
-  var left=20.15;
-  var ttop=58.29166;
+  var width=9;
+  var height=2.75;
+  var left=20.1;
+  var ttop=58.26; 
+
   function EyeOpener(Ob){
     ctx.fillRect((Ob.degE-left)*myCanvas.width/width-2,(ttop-Ob.degN)*myCanvas.height/height-2,4,4);
   }

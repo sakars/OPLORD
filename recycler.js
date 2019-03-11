@@ -6,7 +6,7 @@ function recycle(){
 //Endoffold
 //   For the love of god dont open this fold
   var bigA=str.split("\t");
-  var IDA=IDs.split("\t");
+  var IDA=IDs.split("\t"); 
   var IDSaf=[];
   var reA=[];
   var name;
