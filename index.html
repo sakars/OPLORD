@@ -5,7 +5,7 @@
 <title></title>
 </head>
 <body onload="init();">
-
+<script src="recycler.js"></script>
 <canvas id="myCanvas" width="2000" style="background-color:black"></canvas>
 <script>
   var img=new Image();
@@ -24,6 +24,7 @@
     ctx.drawImage(img,0,0,myCanvas.width,acth);
     ctx.fillRect((23.5123491-left)*myCanvas.width/width-2,(top-56.94951)*myCanvas.height/height-2,4,4);
     ctx.fillRect((21.0919936-left)*myCanvas.width/width-2,(top-56.5531409)*myCanvas.height/height-2,4,4);
+    console.log(recycle());
     setTimeout(update,10);
   }
   function update(){
