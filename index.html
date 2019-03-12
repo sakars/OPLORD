@@ -18,7 +18,7 @@
   var width=9;
   var height=2.75;
   var left=20.1;
-  var ttop=58.26; 
+  var ttop=58.26;
 
   function EyeOpener(Ob){
     ctx.fillRect((Ob.degE-left)*myCanvas.width/width-2,(ttop-Ob.degN)*myCanvas.height/height-2,4,4);
@@ -33,6 +33,7 @@
     ctx.drawImage(img,0,0,myCanvas.width,acth);
     //ctx.fillRect((23.5123491-left)*myCanvas.width/width-2,(top-56.94951)*myCanvas.height/height-2,4,4);
     stops=recycle();
+    ctx.fillStyle="white"
     stops.forEach(EyeOpener);
     setTimeout(update,10);
   }
