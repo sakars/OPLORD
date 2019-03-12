@@ -31,12 +31,20 @@
     var acth=img.height*(myCanvas.width/img.width);
     myCanvas.height=acth;
     ctx.drawImage(img,0,0,myCanvas.width,acth);
-    stops=recycle();
+    recycle();
+    waiter();
+
+  }
+  function waiter(){
+    if(done==false){
+      setTimeout(waiter,10);
+      return;
+    }
+    stops=reA;
     ctx.fillStyle="white";
     stops.forEach(EyeOpener);
     setTimeout(update,10);
   }
-
   function update(){//main update
 
     setTimeout(update,10);

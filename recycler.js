@@ -1,21 +1,12 @@
 function recycle(){
-  //getting busstop data
-  //Beginningoffold
-  var str;//Busstop data string
-  var IDs;//Busstop ID string
   get_stuff();
-
-
-  //Endoffold
-
-  while(!done){}
-  return reA;
 }
+var str;//Busstop data string
+var IDs;//Busstop ID string
 var reA=[];
 var done=false;
 var i=0;
 function daritajs(){
-  alert();
   i++;
   if(i==2){
     var bigA=str.split("\t");
@@ -36,7 +27,7 @@ function daritajs(){
         IDSaf.push(Id);
       }
     }
-    done=true;
+    done =true;
   }
 }
 function get_stuff(){
@@ -44,7 +35,6 @@ function get_stuff(){
   var xhr = new XMLHttpRequest();
   xhr.open('GET', fileURL);
   xhr.onreadystatechange = function() {
-    console.log("k");
     if (xhr.readyState == 4 && xhr.status == 200) {
       str=xhr.responseText;
       daritajs();
