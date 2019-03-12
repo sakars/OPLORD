@@ -11,33 +11,33 @@
 <canvas id="myCanvas" width="4000" style="background-color:black"></canvas>
 
 <script>
+//getting background image
   var img=new Image();
   img.src="LV.jpg";
-  ctx=undefined;
+//declaring globbal variables
+  var ctx=undefined;
   var stops;
   var width=9;
   var height=2.75;
   var left=20.1;
-  var ttop=58.26; 
+  var ttop=58.26;
 
-  function EyeOpener(Ob){
+  function EyeOpener(Ob){//shows all busstops
     ctx.fillRect((Ob.degE-left)*myCanvas.width/width-2,(ttop-Ob.degN)*myCanvas.height/height-2,4,4);
   }
-  function init(){
+  function init(){//initializes canvas and busstops
     ctx=myCanvas.getContext("2d");
-    var img=new Image();
-    img.src="LV.jpg";
-    var acth=img.height*(myCanvas.width/img.width);
 
+    var acth=img.height*(myCanvas.width/img.width);
     myCanvas.height=acth;
     ctx.drawImage(img,0,0,myCanvas.width,acth);
-    //ctx.fillRect((23.5123491-left)*myCanvas.width/width-2,(top-56.94951)*myCanvas.height/height-2,4,4);
     stops=recycle();
+    ctx.fillStyle="white";
     stops.forEach(EyeOpener);
     setTimeout(update,10);
   }
 
-  function update(){
+  function update(){//main update
 
     setTimeout(update,10);
   }
