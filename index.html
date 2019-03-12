@@ -5,11 +5,10 @@
 <title></title>
 </head>
 <body onload="init();">
-<script src="recycler.js"></script>
-<script src="Stops.js"></script>
-
 <canvas id="myCanvas" width="4000" style="background-color:black"></canvas>
 
+<script src="recycler.js"></script>
+<script src="Stops.js"></script>
 <script>
 //getting background image
   var img=new Image();
@@ -27,26 +26,24 @@
   }
   function init(){//initializes canvas and busstops
     ctx=myCanvas.getContext("2d");
-
     var acth=img.height*(myCanvas.width/img.width);
     myCanvas.height=acth;
     ctx.drawImage(img,0,0,myCanvas.width,acth);
-    recycle();
+    recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
 
   }
-  function waiter(){
-    if(done==false){
+  function waiter(){//function that waits until the files are fetched
+    if(done==false){//@recycler.js
       setTimeout(waiter,10);
       return;
     }
-    stops=reA;
+    stops=reA;//@recycler.js
     ctx.fillStyle="white";
     stops.forEach(EyeOpener);
     setTimeout(update,10);
   }
   function update(){//main update
-
     setTimeout(update,10);
   }
 </script>

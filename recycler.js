@@ -1,9 +1,7 @@
-function recycle(){
-  get_stuff();
-}
+
 var str;//Busstop data string
 var IDs;//Busstop ID string
-var reA=[];
+var reA=[];//returned array
 var done=false;
 var i=0;
 function daritajs(){
@@ -30,7 +28,7 @@ function daritajs(){
     done =true;
   }
 }
-function get_stuff(){
+function recycle(){
   var fileURL = "Stop_Data";
   var xhr = new XMLHttpRequest();
   xhr.open('GET', fileURL);
