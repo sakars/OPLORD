@@ -1,4 +1,3 @@
-
 function Stop(name, E, N,Id){
     this.name=name;
     this.degE=E;
