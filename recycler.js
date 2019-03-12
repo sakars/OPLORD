@@ -3,29 +3,7 @@ function recycle(){
   //Beginningoffold
   var str;//Busstop data string
   var IDs;//Busstop ID string
-  var str_done=false;
-  var IDs_done=false;
-  var fileURL = "Stop_Data";
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', fileURL);
-  xhr.onreadystatechange = function() {
-    console.log("k");
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      str=xhr.responseText;
-      daritajs();
-    }
-  }
-  xhr.send();
-  var fileURL2 = "BusID";
-  var xhr2 = new XMLHttpRequest();
-  xhr2.open('GET', fileURL2);
-  xhr2.onreadystatechange = function() {
-    if (xhr2.readyState == 4 && xhr2.status == 200) {
-      IDs=xhr2.responseText;
-      daritajs();
-    }
-  }
-  xhr2.send();
+  get_stuff();
 
 
   //Endoffold
@@ -60,4 +38,27 @@ function daritajs(){
     }
     done=true;
   }
+}
+function get_stuff(){
+  var fileURL = "Stop_Data";
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', fileURL);
+  xhr.onreadystatechange = function() {
+    console.log("k");
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      str=xhr.responseText;
+      daritajs();
+    }
+  }
+  xhr.send();
+  var fileURL2 = "BusID";
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open('GET', fileURL2);
+  xhr2.onreadystatechange = function() {
+    if (xhr2.readyState == 4 && xhr2.status == 200) {
+      IDs=xhr2.responseText;
+      daritajs();
+    }
+  }
+  xhr2.send();
 }
