@@ -36,6 +36,7 @@ function recycle(){
     if (xhr.readyState == 4 && xhr.status == 200) {
       str=xhr.responseText;
       daritajs();
+
     }
   }
   xhr.send();
