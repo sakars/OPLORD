@@ -11,7 +11,7 @@ function daritajs(){
   bigA.forEach(
     function(a,i){
       bigA[i]=a.split("\t");
-      if(!IDSaf.includes(bigA[i][3])){ 
+      if(!IDSaf.includes(bigA[i][3])){
         IDSaf.push(bigA[i][3]);
         reA.push(new Stop(bigA[i][0],bigA[i][2],bigA[i][1],bigA[i][3]));
       }
