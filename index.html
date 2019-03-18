@@ -11,15 +11,17 @@
 <script src="Stops.js"></script>
 <script>
 //getting background image
-  var img=new Image();
-  img.src="LV.jpg";
+  var latv=new Image();
+  latv.src="Images/LV_2_lv_st_19.png";
+  var bg=new Image();
+  bg.src="Images/LV_2_purple.png";
 //declaring globbal variables
   var ctx=undefined;
   var stops;
-  var width=9.0;
-  var height=2.78;
-  var left=20.1;
-  var ttop=58.28;
+  var width=8.23;
+  var height=3.06;
+  var left=20.42;
+  var ttop=58.434;
   var mid=left+width/2;
   function EyeOpener(Ob){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
@@ -27,9 +29,10 @@
   }
   function init(){//initializes canvas and busstops
     ctx=myCanvas.getContext("2d");
-    var acth=img.height*(myCanvas.width/img.width);
+    var acth=latv.height*(myCanvas.width/latv.width);
     myCanvas.height=acth;
-    ctx.drawImage(img,0,0,myCanvas.width,acth);
+    ctx.drawImage(bg,0,0,myCanvas.width,acth);
+    ctx.drawImage(latv,0,0,myCanvas.width,acth);
 
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
@@ -41,7 +44,7 @@
       return;
     }
     stops=reA;//@recycler.js
-    ctx.fillStyle="white";
+    ctx.fillStyle="black";
 
     stops.forEach(EyeOpener);
     setTimeout(update,10);
