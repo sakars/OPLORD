@@ -16,13 +16,14 @@
 //declaring globbal variables
   var ctx=undefined;
   var stops;
-  var width=9;
-  var height=2.75;
+  var width=9.0;
+  var height=2.73;
   var left=20.1;
-  var ttop=58.26;
-
+  var ttop=58.25;
+  var mid=left+width/2;
   function EyeOpener(Ob){//shows all busstops
-    ctx.fillRect((Ob.degE-left)*myCanvas.width/width-2,(ttop-Ob.degN)*myCanvas.height/height-2,4,4);
+    var l=coorToCanvas(Ob.degE,Ob.degN);
+    ctx.fillRect(l[0]-2,l[1]-2,4,4);
   }
   function init(){//initializes canvas and busstops
     ctx=myCanvas.getContext("2d");
@@ -47,6 +48,11 @@
   }
   function update(){//main update
     setTimeout(update,10);
+  }
+  function coorToCanvas(E,N){
+    var x=(E-left)*myCanvas.width/width-(E-mid)*2;
+    var y=((ttop-N)*myCanvas.height/height)-Math.pow(E-mid,2)*2;
+    return [x,y];
   }
 </script>
 
