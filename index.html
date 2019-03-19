@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+<style>
+  #myCanvas{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+</style>
 </head>
 <body onload="init();">
 <canvas id="myCanvas" width="4000" style="background-color:black"></canvas>
@@ -21,15 +28,25 @@
   var left=20.1;
   var ttop=58.28;
   var mid=left+width/2;
+  var acth;
+  var actw;
   function EyeOpener(Ob){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
-    ctx.fillRect(l[0]-2,l[1]-2,4,4);
+    ctx.fillRect(l[0]-1,l[1]-1,2,2);
   }
   function init(){//initializes canvas and busstops
     ctx=myCanvas.getContext("2d");
-    var acth=img.height*(myCanvas.width/img.width);
-    myCanvas.height=acth;
-    ctx.drawImage(img,0,0,myCanvas.width,acth);
+    myCanvas.width=window.innerWidth;
+    myCanvas.height=window.innerHeight;
+    if((window.innerWidth/window.innerHeight)<(img.width/img.height)){
+      acth=img.height*(myCanvas.width/img.width);
+      actw=myCanvas.width;
+    }else{
+      acth=myCanvas.height;
+      actw=img.width*(myCanvas.height/img.height);
+    }
+    //myCanvas.height=acth;
+    ctx.drawImage(img,0,0,actw,acth);
 
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
@@ -50,8 +67,8 @@
     setTimeout(update,10);
   }
   function coorToCanvas(E,N){
-    var x=(E-left)*myCanvas.width/width-(E-mid)*2;
-    var y=((ttop-N)*myCanvas.height/height)-Math.pow(E-mid,2)*2;
+    var x=(E-left)*actw/width-(E-mid)*2;
+    var y=((ttop-N)*acth/height)-Math.pow(E-mid,2)*2;
     return [x,y];
   }
 </script>
