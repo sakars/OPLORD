@@ -6,19 +6,33 @@
 <style>
 body{
   margin: 0;
-  background-color: #643587;
+  background-color: #901FBA;
+  zoom: 25%;
 }
 canvas{
   position: absolute;
   background-color: none;
+  opacity: 0;
+  transition: all 1s ease;
+}
+video{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -350px;
+  opacity: 0;
+  transition: all 0.5s ease;
 }
 </style>
 </head>
-<body onload="init();"> 
+<body onload = "fadeIn();">
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
-
+<video id = "loader" width="2200" height="3600" loop>
+  <source src="Videos/Animation_load_1.mp4" type="video/mp4">
+Your browser does not support video playback.
+</video>
 <script src="recycler.js"></script>
 <script src="Stops.js"></script>
 <script>
@@ -28,7 +42,6 @@ canvas{
   var orangeLayer = new Image();
   orangeLayer.src = "Images/LV_2_orange.png";
 //declaring globbal variables
-  var ctx=undefined;
   var stops;
   var width=8.23;
   var height=3.06;
@@ -56,11 +69,11 @@ canvas{
     middle.width=window.innerWidth;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
-      acth=latv.height*(middle.width/latv.width);
-      actw=middle.width;
+      acth=latv.height*(middle.width/latv.width)*4;
+      actw=middle.width*4;
     }else{
-      acth=middle.height;
-      actw=latv.width*(middle.height/latv.height);
+      acth=middle.height*4;
+      actw=latv.width*(middle.height/latv.height)*4;
     }
     middle.height=acth;
     bottomUpdate.height=acth;
@@ -79,8 +92,14 @@ canvas{
     }
     stops=reA;//@recycler.js
     //middle
+    loader.style.opacity = "0";
+    setTimeout(function(){
+      bottomUpdate.style.opacity = "1";
+      middle.style.opacity = "1";
+      topUpdate.style.opacity = "1";
+    }, 800);
     mtx.drawImage(latv,0,0,middle.width,middle.height);
-    btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
+    //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
     mtx.strokeStyle="black";
     mtx.fillStyle="white";
     mtx.lineWidth = 2;
@@ -95,6 +114,14 @@ canvas{
     var y=((ttop-N)*middle.height/height);
     return [x,y];
   }
+  function fadeIn(){
+    loader.style.opacity = "1";
+    document.getElementById("loader").play();
+  }
+
+window.addEventListener('load', function(){
+setTimeout(init, 2300);
+}, false);
 </script>
 
 </body>
