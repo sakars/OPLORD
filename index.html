@@ -83,7 +83,6 @@ Your browser does not support video playback.
     topUpdate.width=actw;
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
-
   }
   function waiter(){//function that waits until the files are fetched
     if(done==false){//@recycler.js
@@ -118,11 +117,9 @@ Your browser does not support video playback.
     loader.style.opacity = "1";
     document.getElementById("loader").play();
   }
-
-window.addEventListener('load', function(){
-setTimeout(init, 2300);
-}, false);
+  window.addEventListener('load', function(){
+    setTimeout(init, 2300);
+  }, false);
 </script>
-
 </body>
 </html>
