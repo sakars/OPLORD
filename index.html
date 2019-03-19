@@ -25,7 +25,7 @@ video{
 }
 </style>
 </head>
-<body onload = "fadeIn();">
+<body>
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
@@ -38,12 +38,12 @@ Your browser does not support video playback.
 <script src="bus.js"></script>
 <script src="Stops.js"></script>
 <script>
-//getting background image
+  //getting background image
   var latv=new Image();
   latv.src="Images/LV_2_lv_st_19.png";
   var orangeLayer = new Image();
   orangeLayer.src = "Images/LV_2_orange.png";
-//declaring globbal variables
+  //declaring globbal variables
   var stops;
   var width=8.23;
   var height=3.06;
@@ -100,6 +100,7 @@ Your browser does not support video playback.
       bottomUpdate.style.opacity = "1";
       middle.style.opacity = "1";
       topUpdate.style.opacity = "1";
+      stopC.style.opacity = "1";
     }, 800);
     mtx.drawImage(latv,0,0,middle.width,middle.height);
     //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
@@ -137,10 +138,9 @@ Your browser does not support video playback.
   function fadeIn(){
     loader.style.opacity = "1";
     document.getElementById("loader").play();
-  }
-  window.addEventListener('load', function(){
     setTimeout(init, 2300);
-  }, false);
+  }
+  window.addEventListener('load', fadeIn, false);
 </script>
 </body>
 </html>
