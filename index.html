@@ -69,8 +69,8 @@
     setTimeout(update,10);
   }
   function coorToCanvas(E,N){
-    var x=(E-left)*actw/width-(E-mid)*2;
-    var y=((ttop-N)*acth/height)-Math.pow(E-mid,2)*2;
+    var x=(E-left)*actw/width;
+    var y=((ttop-N)*acth/height);
     return [x,y];
   }
 </script>
