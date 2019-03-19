@@ -3,6 +3,8 @@ function Bus(route){
   this.place=1;
   this.x=route[0].x;
   this.y=route[0].y;
+  this.passengerCool=10;
+  this.waited=0;
 }
 var SpeedC=0.001;
 function BusUpdate(Ob){
@@ -19,11 +21,16 @@ function BusUpdate(Ob){
   }else{
     Ob.x=dest.x;
     Ob.y=dest.y;
-    if(Ob.place==Ob.route.length-1){
-      Ob.place=0;
+    if(Ob.waited==Ob.passengerCool){
+      Ob.waited=0;
+      if(Ob.place==Ob.route.length-1){
+        Ob.place=0;
+      }else{
+        Ob.place++;
+      }
     }else{
-      Ob.place++;
+      Ob.waited++;
     }
   }
-  ttx.fillRect(Ob.x-2,Ob.y-2,4,4);
+  ttx.fillRect(Ob.x-actw*0.001,Ob.y-actw*0.001,actw*0.002,actw*0.002);
 }

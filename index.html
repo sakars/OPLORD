@@ -110,20 +110,19 @@ Your browser does not support video playback.
 
     stops.forEach(EyeOpener);
     //busses
-    for(var i=0;i<20;i++){
+    for(var i=0;i<1500;i++){
       busses.push(new Bus([stops[random(0,8000)],stops[random(0,8000)],stops[random(0,8000)]]));
     }
-    setTimeout(update,10);
+    setInterval(update,1000/60);
   }
   function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
   function update(){//main update
-    var date=new Date().getTime();
     ttx.clearRect(0,0,actw,acth);
     ttx.fillStyle="red";
     busses.forEach(BusUpdate);//@bus.js
-    setTimeout(update,1);
+    //setTimeout(update,10);
   }
   function StopDraw(Ob){
     stx.beginPath();
