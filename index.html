@@ -14,12 +14,14 @@ canvas{
 }
 </style>
 </head>
-<body onload="init();"> 
+<body onload="init();">
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
+<canvas id="stopC" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
 
 <script src="recycler.js"></script>
+<script src="bus.js"></script>
 <script src="Stops.js"></script>
 <script>
 //getting background image
@@ -37,20 +39,19 @@ canvas{
   var mid=left+width/2;
   var acth;
   var actw;
+  var busses=[];
   function EyeOpener(Ob, index){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
     stops[index].x=l[0];
     stops[index].y=l[1];
-    ttx.beginPath();
-    ttx.arc(l[0]-2, l[1]-2, 2, 0, Math.PI*2);
-    ttx.fill();
-    ttx.beginPath();
-    ttx.arc(l[0]-2, l[1]-2, 2.5, 0, Math.PI*2);
-    ttx.stroke();
+    stx.beginPath();
+    stx.arc((l[0]), (l[1]), 2.5/3000*actw, 0, Math.PI*2);
+    stx.fill();
     //ctx.fillRect(l[0]-2,l[1]-2,4,4);
   }
   function init(){//initializes canvas and busstops
     mtx=middle.getContext("2d");
+    stx=stopC.getContext("2d");
     btx=bottomUpdate.getContext("2d");
     ttx=topUpdate.getContext("2d");
     middle.width=window.innerWidth;
@@ -68,6 +69,9 @@ canvas{
     middle.width=actw;
     bottomUpdate.width=actw;
     topUpdate.width=actw;
+    stopC.height=acth;
+    stopC.width=actw;
+    SpeedC=SpeedC*actw;
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
 
@@ -84,11 +88,28 @@ canvas{
     mtx.strokeStyle="black";
     mtx.fillStyle="white";
     mtx.lineWidth = 2;
+
     stops.forEach(EyeOpener);
+    //busses
+    for(var i=0;i<20;i++){
+      busses.push(new Bus([stops[random(0,8000)],stops[random(0,8000)],stops[random(0,8000)]]));
+    }
     setTimeout(update,10);
   }
+  function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
   function update(){//main update
-    setTimeout(update,10);
+    var date=new Date().getTime();
+    ttx.clearRect(0,0,actw,acth);
+    ttx.fillStyle="red";
+    busses.forEach(BusUpdate);//@bus.js
+    setTimeout(update,1);
+  }
+  function StopDraw(Ob){
+    stx.beginPath();
+    stx.arc(Ob.x-2, Ob.y-2, 2.5, 0, Math.PI*2);
+    stx.stroke();
   }
   function coorToCanvas(E,N){
     var x=(E-left)*middle.width/width;
