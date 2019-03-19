@@ -20,7 +20,7 @@ canvas{
 <canvas id="topUpdate" width="4000"></canvas>
 
 <script src="recycler.js"></script>
-<script src="Stops.js"></script> 
+<script src="Stops.js"></script>
 <script>
 //getting background image
   var latv=new Image();
@@ -37,7 +37,7 @@ canvas{
   var mid=left+width/2;
   var acth;
   var actw;
-  function EyeOpener(Ob){//shows all busstops
+  function EyeOpener(Ob, index){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
     stops[index].x=l[0];
     stops[index].y=l[1];
@@ -55,12 +55,12 @@ canvas{
     ttx=topUpdate.getContext("2d");
     middle.width=window.innerWidth;
     middle.height=window.innerHeight;
-    if((window.innerWidth/window.innerHeight)<(img.width/img.height)){
-      acth=img.height*(middle.width/img.width);
+    if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
+      acth=latv.height*(middle.width/latv.width);
       actw=middle.width;
     }else{
       acth=middle.height;
-      actw=img.width*(middle.height/img.height);
+      actw=latv.width*(middle.height/latv.height);
     }
     middle.height=acth;
     bottomUpdate.height=acth;
