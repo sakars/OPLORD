@@ -39,6 +39,8 @@ canvas{
   var actw;
   function EyeOpener(Ob){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
+    stops[index].x=l[0];
+    stops[index].y=l[1];
     ttx.beginPath();
     ttx.arc(l[0]-2, l[1]-2, 2, 0, Math.PI*2);
     ttx.fill();
@@ -51,11 +53,21 @@ canvas{
     mtx=middle.getContext("2d");
     btx=bottomUpdate.getContext("2d");
     ttx=topUpdate.getContext("2d");
-    var acth=latv.height*(middle.width/latv.width);
+    middle.width=window.innerWidth;
+    middle.height=window.innerHeight;
+    if((window.innerWidth/window.innerHeight)<(img.width/img.height)){
+      acth=img.height*(middle.width/img.width);
+      actw=middle.width;
+    }else{
+      acth=middle.height;
+      actw=img.width*(middle.height/img.height);
+    }
     middle.height=acth;
     bottomUpdate.height=acth;
     topUpdate.height=acth;
-
+    middle.width=actw;
+    bottomUpdate.width=actw;
+    topUpdate.width=actw;
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
 
@@ -79,8 +91,8 @@ canvas{
     setTimeout(update,10);
   }
   function coorToCanvas(E,N){
-    var x=(E-left)*middle.width/width-(E-mid)*2;
-    var y=((ttop-N)*middle.height/height)-Math.pow(E-mid,2)*2;
+    var x=(E-left)*middle.width/width;
+    var y=((ttop-N)*middle.height/height);
     return [x,y];
   }
 </script>
