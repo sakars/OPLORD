@@ -2,59 +2,53 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
-<title>Transport</title>
+<title></title>
 <style>
-body{
-  margin: 0;
-  background-color: #643587;
-}
-canvas{
-  position: absolute;
-  background-color: none;
-}
+  #myCanvas{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
 </style>
 </head>
 <body onload="init();">
-<canvas id="bottomUpdate" width="4000"></canvas>
-<canvas id="middle" width="4000"></canvas>
-<canvas id="topUpdate" width="4000"></canvas>
+<canvas id="myCanvas" width="4000" style="background-color:black"></canvas>
 
 <script src="recycler.js"></script>
 <script src="Stops.js"></script>
 <script>
 //getting background image
-  var latv=new Image();
-  latv.src="Images/LV_2_lv_st_19.png";
-  var orangeLayer = new Image();
-  orangeLayer.src = "Images/LV_2_orange.png";
+  var img=new Image();
+  img.src="LV.jpg";
 //declaring globbal variables
   var ctx=undefined;
   var stops;
-  var width=8.23;
-  var height=3.06;
-  var left=20.42;
-  var ttop=58.434;
+  var width=9.0;
+  var height=2.78;
+  var left=20.1;
+  var ttop=58.28;
   var mid=left+width/2;
   var acth;
   var actw;
-  function EyeOpener(Ob){//shows all busstops
+  function EyeOpener(Ob,index){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
-    ttx.beginPath();
-    ttx.arc(l[0]-2, l[1]-2, 2, 0, Math.PI*2);
-    ttx.fill();
-    ttx.beginPath();
-    ttx.arc(l[0]-2, l[1]-2, 2.5, 0, Math.PI*2);
-    ttx.stroke();
-    //ctx.fillRect(l[0]-2,l[1]-2,4,4);
+    stops[index].x=l[0];
+    stops[index].y=l[1];
+    ctx.fillRect(l[0]-1,l[1]-1,2,2);
   }
   function init(){//initializes canvas and busstops
-    mtx=middle.getContext("2d");
-    btx=bottomUpdate.getContext("2d");
-    ttx=topUpdate.getContext("2d");
-    var acth=latv.height*(middle.width/latv.width);
-    middle.height=acth;
-    bottomUpdate.height=acth;
-    topUpdate.height=acth;
+    ctx=myCanvas.getContext("2d");
+    myCanvas.width=window.innerWidth;
+    myCanvas.height=window.innerHeight;
+    if((window.innerWidth/window.innerHeight)<(img.width/img.height)){
+      acth=img.height*(myCanvas.width/img.width);
+      actw=myCanvas.width;
+    }else{
+      acth=myCanvas.height;
+      actw=img.width*(myCanvas.height/img.height);
+    }
+    //myCanvas.height=acth;
+    ctx.drawImage(img,0,0,actw,acth);
 
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
@@ -66,12 +60,8 @@ canvas{
       return;
     }
     stops=reA;//@recycler.js
-    //middle
-    mtx.drawImage(latv,0,0,middle.width,middle.height);
-    btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
-    mtx.strokeStyle="black";
-    mtx.fillStyle="white";
-    mtx.lineWidth = 2;
+    ctx.fillStyle="white";
+
     stops.forEach(EyeOpener);
     setTimeout(update,10);
   }
@@ -79,8 +69,8 @@ canvas{
     setTimeout(update,10);
   }
   function coorToCanvas(E,N){
-    var x=(E-left)*middle.width/width-(E-mid)*2;
-    var y=((ttop-N)*middle.height/height)-Math.pow(E-mid,2)*2;
+    var x=(E-left)*actw/width-(E-mid)*2;
+    var y=((ttop-N)*acth/height)-Math.pow(E-mid,2)*2;
     return [x,y];
   }
 </script>

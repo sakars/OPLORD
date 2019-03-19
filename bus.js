@@ -1,0 +1,3 @@
+function Bus(route){//masivs
+  
+}
