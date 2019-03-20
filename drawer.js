@@ -75,9 +75,5 @@ function move(e){if(down){
   ttx.translate(dex,dey);
   btx.translate(dex,dey);
   redraw();
-  stx.save();
-  mtx.save();
-  ttx.save();
-  btx.save();
   console.log([dex,dey]);
 }}
