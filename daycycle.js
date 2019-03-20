@@ -26,8 +26,8 @@ function updateTime(){
       pod = "Night";
     }
     podDisplay.innerHTML = "POD: " + pod;
-    localTime += 0.1;
-    setTimeout(updateTime, 100);
+    localTime += 0.2;
+    setTimeout(updateTime, 200);
   }
   else{
     localTime = 0;
