@@ -7,7 +7,7 @@
 body{
   margin: 0;
   background-color: #901FBA;
-  zoom: 25%;
+  zoom: 50%;
 }
 canvas{
   position: absolute;
@@ -22,6 +22,7 @@ video{
   top: -350px;
   opacity: 0;
   transition: all 0.5s ease;
+  zoom: 50%;
 }
 </style>
 </head>
@@ -48,10 +49,10 @@ Your browser does not support video playback.
   orangeLayer.src = "Images/LV_2_orange.png";
   //declaring globbal variables
   var stops;
-  var width=8.23;
-  var height=3.06;
-  var left=20.42;
-  var ttop=58.434;
+  var width=8.25;
+  var height=3.08;
+  var left=20.41;
+  var ttop=58.44;
   var mid=left+width/2;
   var acth;
   var actw;
@@ -77,11 +78,11 @@ Your browser does not support video playback.
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
-      acth=latv.height*(middle.width/latv.width)*4;
-      actw=middle.width*4;
+      acth=latv.height*(middle.width/latv.width)*2;
+      actw=middle.width*2;
     }else{
-      acth=middle.height*4;
-      actw=latv.width*(middle.height/latv.height)*4;
+      acth=middle.height*2;
+      actw=latv.width*(middle.height/latv.height)*2;
     }
     middle.height=acth;
     bottomUpdate.height=acth;
