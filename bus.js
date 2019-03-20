@@ -1,4 +1,4 @@
-var SpeedC=0.001;
+var SpeedC=0.00002;
 function Bus(route){
   this.route=route;
   this.place=1;
