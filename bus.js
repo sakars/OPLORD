@@ -40,7 +40,10 @@ function BusUpdate(Ob){
   ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-(Ob.x-actw*0.001),-(Ob.y-actw*0.001));
 }
-
+function coorInit(Ob){
+  Ob.x=Ob.route[0].x;
+  Ob.y=Ob.route[0].y;
+}
 function drawBus(x, y, scale, color){
     ttx.lineWidth = scale/10;
     ttx.fillStyle = color;

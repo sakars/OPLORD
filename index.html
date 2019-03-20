@@ -192,11 +192,13 @@ Your browser does not support video playback.
     mtx.save();
 
     stops.forEach(EyeOpener);
+    busses.forEach(coorInit);
     //busses
+    /*
     for(var i=0;i<1500;i++){
       busses.push(new Bus([stops[random(0,8000)],stops[random(0,8000)],stops[random(0,8000)]]));
     }
-
+    */
     updateTime();
 
     interval=setInterval(update,1000/60);
