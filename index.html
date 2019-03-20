@@ -3,79 +3,8 @@
 <head>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
 <title>Transport</title>
-<style>
-body{
-  margin: 0;
-  background-color: #901FBA;
-  zoom: 50%;
-}
-canvas{
-  position: absolute;
-  background-color: none;
-  opacity: 0;
-  transition: all 1s ease;
-}
-video{
-  position: absolute;
-  top: -350px;
-  opacity: 0;
-  transition: all 0.5s ease;
-  zoom: 50%;
-}
-.center{
-  left: 50%;
-  transform: translateX(-50%);
-}
-#timeContainer{
-  transition: all 0.5s ease;
-  position: absolute;
-  width: 100px;
-  height: 3%;
-  border: none;
-  background-color: transparent;
-  padding: 2px 2px;
-  opacity: 0;
-}
-#timeDisplay, #dayDisplay, #podDisplay{
-  text-shadow: 2px 2px black;
-  user-select: none;
-  position: absolute;
-  transition: all 0.5s ease;
-  color: white;
-  font-family: Montserrat;
-  font-size: 40px;
-  width: 50%;
-}
-#dayDisplay{
-  width: 100%;
-  opacity: 0;
-  font-size: 17px;
-  top: 7px;
-}
-#podDisplay{
-  transform: translateX(-10%);
-  top: 25px;
-  width: 100%;
-  opacity: 0;
-  font-size: 17px;
-}
-#timeContainer:hover #timeDisplay{
-  left: 0%;
-}
-#timeContainer:hover #dayDisplay{
-  transform: translateX(-10%);
-  left: 100%;
-  opacity: 1;
-  width: 100%;
-}
-#timeContainer:hover #podDisplay{
-  transform: translateX(-6%);
-  left: 100%;
-  opacity: 1;
-  width: 150%;
-}
-</style>
 </head>
 <body id="body">
 <canvas id="bottomUpdate" width="4000"></canvas>
@@ -222,7 +151,7 @@ Your browser does not support video playback.
       document.getElementById("loader").play();
     }
     catch(e){}
-    setTimeout(init, 2300);
+    setTimeout(init, 300);
   }
   window.addEventListener('load', fadeIn, false);
 </script>
