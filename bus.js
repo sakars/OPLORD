@@ -4,7 +4,7 @@ function Bus(route){
   this.place=1;
   this.x=route[0].x;
   this.y=route[0].y;
-  this.passengerCool=10;
+  this.passengerCool=50;
   this.waited=0;
 }
 function BusUpdate(Ob){
@@ -35,9 +35,9 @@ function BusUpdate(Ob){
   ttx.strokeStyle = "black";
   ttx.lineWidth = actw*0.00015;
   ttx.translate(Ob.x-actw*0.001,Ob.y-actw*0.001);
-  ttx.rotate(Math.atan(dy/dx));
+  ttx.rotate(Math.atan2(dy,dx));
   drawBus(0, 0, actw*0.0015, "#f4ee42");
-  ttx.rotate(-Math.atan(dy/dx));
+  ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-(Ob.x-actw*0.001),-(Ob.y-actw*0.001));
 }
 
