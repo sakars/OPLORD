@@ -52,3 +52,28 @@ function coorToCanvas(E,N){
   var y=((ttop-N)*middle.height/height);
   return [x,y];
 }
+var prX=0;
+var prY=0;
+function move(e){if(down){
+  var x = e.clientX;
+  var y = e.clientY;
+  var dex=(x-prX)/(zoom/100);
+  var dey=(y-prY)/(zoom/100);
+  prX=x;
+  prY=y;
+  stx.clearRect(0,0,actw,acth);
+  mtx.clearRect(0,0,actw,acth);
+  ttx.clearRect(0,0,actw,acth);
+  btx.clearRect(0,0,actw,acth);
+
+  stx.translate(dex,dey);
+  mtx.translate(dex,dey);
+  ttx.translate(dex,dey);
+  btx.translate(dex,dey);
+  redraw();
+  stx.save();
+  mtx.save();
+  ttx.save();
+  btx.save();
+  console.log([dex,dey]);
+}}
