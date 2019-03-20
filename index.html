@@ -110,6 +110,7 @@ Your browser does not support video playback.
     //middle
     loader.style.opacity = "0";
     setTimeout(function(){
+      loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
       middle.style.opacity = "1";
       topUpdate.style.opacity = "1";
@@ -149,8 +150,9 @@ Your browser does not support video playback.
   function fadeIn(){
     loader.style.opacity = "1";
     try{
-    document.getElementById("loader").play();
-  }catch(e){}
+      document.getElementById("loader").play();
+    }
+    catch(e){}
     setTimeout(init, 2300);
   }
   window.addEventListener('load', fadeIn, false);
