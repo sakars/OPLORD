@@ -7,7 +7,7 @@
 body{
   margin: 0;
   background-color: #901FBA;
-  zoom: 25%;
+  zoom: 50%;
 }
 canvas{
   position: absolute;
@@ -42,6 +42,11 @@ Your browser does not support video playback.
   //getting background image
   body.addEventListener("mousewheel", resize, false);
   body.addEventListener("DOMMouseScroll", resize, false);
+  var down=false;
+  body.addEventListener("mouseup", function(){down=false;}, false);
+  body.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
+  body.addEventListener("mousemove", move, false);
+
   var latv=new Image();
   latv.src="Images/LV_2_lv_st_19.png";
   var orangeLayer = new Image();
@@ -77,11 +82,11 @@ Your browser does not support video playback.
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
-      acth=latv.height*(middle.width/latv.width)*4;
-      actw=middle.width*4;
+      acth=latv.height*(middle.width/latv.width)*2;
+      actw=middle.width*2;
     }else{
-      acth=middle.height*4;
-      actw=latv.width*(middle.height/latv.height)*4;
+      acth=middle.height*2;
+      actw=latv.width*(middle.height/latv.height)*2;
     }
     middle.height=acth;
     bottomUpdate.height=acth;
