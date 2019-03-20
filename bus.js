@@ -1,3 +1,5 @@
+const ctx = topUpdate.getContext("2d");
+var SpeedC=0.001;
 function Bus(route){
   this.route=route;
   this.place=1;
@@ -6,7 +8,6 @@ function Bus(route){
   this.passengerCool=10;
   this.waited=0;
 }
-var SpeedC=0.001;
 function BusUpdate(Ob){
   var destindex=Ob.place;
   var dest=Ob.route[destindex];
@@ -32,5 +33,27 @@ function BusUpdate(Ob){
       Ob.waited++;
     }
   }
-  ttx.fillRect(Ob.x-actw*0.001,Ob.y-actw*0.001,actw*0.002,actw*0.002);
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = actw*0.00015;
+  ctx.translate(Ob.x-actw*0.001,Ob.y-actw*0.001);
+  ctx.rotate(Math.atan(dy/dx));
+  drawBus(0, 0, actw*0.0015, "#f4ee42");
+  ctx.rotate(-Math.atan(dy/dx));
+  ctx.translate(-(Ob.x-actw*0.001),-(Ob.y-actw*0.001));
+}
+
+function drawBus(x, y, scale, color){
+    ctx.lineWidth = scale/10;
+    ctx.fillStyle = color;
+    ctx.strokeRect(x, y - scale/6, scale/2, scale/3);
+    ctx.strokeRect(x - scale/2, y - scale/5, scale/1.1, scale*2/5);
+    ctx.fillRect(x - scale/2, y - scale/5, scale/1.1, scale*2/5);
+    ctx.fillRect(x, y - scale/6, scale/2, scale/3);
+    ctx.beginPath();
+    for(i = -3; i < 3; i++){
+        ctx.moveTo(x + scale*i/7 + scale/20, y - scale/8);
+        ctx.lineTo(x + scale*i/7 + scale/20, y + scale/8);
+    }
+    ctx.lineWidth = scale/80;
+    ctx.stroke();
 }
