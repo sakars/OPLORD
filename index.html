@@ -37,7 +37,7 @@ video{
   padding: 2px 2px;
   opacity: 0;
 }
-#timeDisplay, #dayDisplay{
+#timeDisplay, #dayDisplay, #podDisplay{
   text-shadow: 2px 2px black;
   user-select: none;
   position: absolute;
@@ -50,17 +50,30 @@ video{
 #dayDisplay{
   width: 100%;
   opacity: 0;
-  font-size: 20px;
-  top: 6px;
+  font-size: 17px;
+  top: 7px;
+}
+#podDisplay{
+  transform: translateX(-10%);
+  top: 25px;
+  width: 100%;
+  opacity: 0;
+  font-size: 17px;
 }
 #timeContainer:hover #timeDisplay{
   left: 0%;
 }
 #timeContainer:hover #dayDisplay{
-  transform: translateX(0%);
+  transform: translateX(-10%);
   left: 100%;
   opacity: 1;
   width: 100%;
+}
+#timeContainer:hover #podDisplay{
+  transform: translateX(-6%);
+  left: 100%;
+  opacity: 1;
+  width: 150%;
 }
 </style>
 </head>
@@ -72,6 +85,7 @@ video{
 <div class="center" id="timeContainer">
   <div class="center" id="timeDisplay"></div>
   <div class="center" id="dayDisplay"></div>
+  <div class="center" id="podDisplay">POD: Night</div>
 </div>
 <video class="center" id = "loader" width="2200" height="3600" loop>
   <source src="Videos/Animation_load_1.mp4" type="video/mp4">
