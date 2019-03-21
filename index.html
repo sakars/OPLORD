@@ -52,6 +52,7 @@ Your browser does not support video playback.
   var pr=0;
   var stackSize=0;
   var interval;
+  var lvfilter = "brightness(100%)";
   function EyeOpener(Ob, index){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
     stops[index].x=l[0];
@@ -105,6 +106,7 @@ Your browser does not support video playback.
       loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
       middle.style.opacity = "1";
+      middle.style.transition = "filter 20s ease";
       topUpdate.style.opacity = "1";
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";

@@ -34,11 +34,11 @@ function BusUpdate(Ob){
   }
   ttx.strokeStyle = "black";
   ttx.lineWidth = actw*0.00015;
-  ttx.translate(Ob.x-actw*0.001,Ob.y-actw*0.001);
+  ttx.translate(Ob.x,Ob.y);
   ttx.rotate(Math.atan2(dy,dx));
   drawBus(0, 0, actw*0.0015, "#f4ee42");
   ttx.rotate(-Math.atan2(dy,dx));
-  ttx.translate(-(Ob.x-actw*0.001),-(Ob.y-actw*0.001));
+  ttx.translate(-Ob.x,-Ob.y);
 }
 function coorInit(Ob){
   Ob.x=Ob.route[0].x;
