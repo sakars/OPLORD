@@ -1,4 +1,4 @@
-var localTime = 0;
+var localTime = 250;
 var day = 0;
 var showDay = false;
 var pod = "";
@@ -13,20 +13,24 @@ function updateTime(){
     let hours = Math.floor(partOfDay)
     hours = String(hours).length == 2 ? hours : "0" + hours;
     timeDisplay.innerHTML = hours + ":" + minutes;
-    dayDisplay.innerHTML = "  Day: " + day;
+    dayDisplay.innerHTML = "  Diena: " + day;
     if(localTime > dayLength*3/4){
-      pod = "Evening";
+      body.style.backgroundColor = "#510a5e";
+      pod = "Vakars";
     }
     else if(localTime > dayLength/2){
-      pod = "Day";
+      body.style.backgroundColor = "#901FBA";
+      pod = "Diena";
     }
     else if(localTime > dayLength/4){
-      pod = "Morning";
+      body.style.backgroundColor = "#901FBA";
+      pod = "Rīts";
     }
     else{
-      pod = "Night";
+      body.style.backgroundColor = "#220430";
+      pod = "Nakts";
     }
-    podDisplay.innerHTML = "POD: " + pod;
+    podDisplay.innerHTML = "DD: " + pod;
     localTime += 0.2;
     setTimeout(updateTime, 200);
   }

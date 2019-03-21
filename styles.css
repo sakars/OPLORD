@@ -2,6 +2,7 @@ body{
   margin: 0;
   background-color: #901FBA;
   zoom: 50%;
+  transition: background-color 30s ease;
 }
 canvas{
   position: absolute;
