@@ -1,21 +1,5 @@
+
 function resize(e){
-  if(Math.sign(e.deltaY) == -1 || zoom > 100){
-    stx.restore();
-    stx.save();
-
-    mtx.restore();
-    mtx.save();
-
-    ttx.restore();
-    ttx.save();
-
-    btx.restore();
-    btx.save();
-    zoom-=(e.deltaY**3)/100000;
-    if(zoom < 100){
-      zoom+=(e.deltaY**3)/100000;
-    }
-    pr=e.deltaY;
     stx.clearRect(0,0,actw,acth);
     mtx.clearRect(0,0,actw,acth);
     ttx.clearRect(0,0,actw,acth);
@@ -25,6 +9,25 @@ function resize(e){
     mtx.translate(actw/2,acth/2);
     ttx.translate(actw/2,acth/2);
     btx.translate(actw/2,acth/2);
+
+    stx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
+    mtx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
+    ttx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
+    btx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
+
+
+    zoom-=(e.deltaY**3)/100000;
+    if(zoom < 100){
+      zoom+=(e.deltaY**3)/100000;
+    }
+    pr=e.deltaY;
+    /*
+    stx.clearRect(0,0,actw,acth);
+    mtx.clearRect(0,0,actw,acth);
+    ttx.clearRect(0,0,actw,acth);
+    btx.clearRect(0,0,actw,acth);
+    */
+
 
     stx.transform(zoom/100,0,0,zoom/100,0,0);
     mtx.transform(zoom/100,0,0,zoom/100,0,0);
@@ -36,7 +39,6 @@ function resize(e){
     ttx.translate(-actw/2,-acth/2);
     btx.translate(-actw/2,-acth/2);
     redraw();
-  }
 }
 function redraw(){
   stops.forEach(StopDraw);
@@ -58,22 +60,27 @@ function coorToCanvas(E,N){
 }
 var prX=0;
 var prY=0;
-function move(e){if(down){
-  var x = e.clientX;
-  var y = e.clientY;
-  var dex=(x-prX)/(zoom/100);
-  var dey=(y-prY)/(zoom/100);
-  prX=x;
-  prY=y;
-  stx.clearRect(0,0,actw,acth);
-  mtx.clearRect(0,0,actw,acth);
-  ttx.clearRect(0,0,actw,acth);
-  btx.clearRect(0,0,actw,acth);
+function move(e){
+  if(down){
+    var x = e.clientX;
+    var y = e.clientY;
+    var dex=(x-prX)/(zoom/100);
+    var dey=(y-prY)/(zoom/100);
+    prX=x;
+    prY=y;
+    stx.clearRect(0,0,actw,acth);
+    mtx.clearRect(0,0,actw,acth);
+    ttx.clearRect(0,0,actw,acth);
+    btx.clearRect(0,0,actw,acth);
 
-  stx.translate(dex,dey);
-  mtx.translate(dex,dey);
-  ttx.translate(dex,dey);
-  btx.translate(dex,dey);
-  redraw();
-  console.log([dex,dey]);
-}}
+    stx.translate(dex,dey);
+    mtx.translate(dex,dey);
+    ttx.translate(dex,dey);
+    btx.translate(dex,dey);
+    redraw();
+    console.log([dex,dey]);
+  }else{
+    prX=e.clientX;
+    prY=e.clientY;
+  }
+}
