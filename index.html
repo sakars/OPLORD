@@ -51,6 +51,8 @@ Your browser does not support video playback.
   var interval;
   var lvfilter = "brightness(100%)";
   var Console = new Console2();
+  var mwdw;//middle.width/width
+  var mhdh;//middle.height/height
   function Console2(){
     this.log = function(e){
       console2.innerHTML += "[ " + timeDisplay.innerHTML + " ] " + e + "<br>";
@@ -85,6 +87,8 @@ Your browser does not support video playback.
     topUpdate.width=actw;
     stopC.height=acth;
     stopC.width=actw;
+    mwdw=middle.width/width;
+    mhdh=middle.height/height;
 /*
     mtx.translate((window.innerWidth-actw)/2,0);
     stx.translate((window.innerWidth-actw)/2,0);

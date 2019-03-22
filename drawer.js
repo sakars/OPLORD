@@ -4,19 +4,20 @@ function resize(e){
     mtx.clearRect(0,0,actw,acth);
     ttx.clearRect(0,0,actw,acth);
     btx.clearRect(0,0,actw,acth);
-
-    stx.translate(actw/2,acth/2);
-    mtx.translate(actw/2,acth/2);
-    ttx.translate(actw/2,acth/2);
-    btx.translate(actw/2,acth/2);
-
-    stx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
-    mtx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
-    ttx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
-    btx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
-
-    if(zoom-(e.deltaY**3)/100000 >= 100){
-      zoom-=(e.deltaY**3)/100000;
+    let tem2=actw/2;
+    let tem3=acth/2;
+    stx.translate(tem2,tem3);
+    mtx.translate(tem2,tem3);
+    ttx.translate(tem2,tem3);
+    btx.translate(tem2,tem3);
+    let tem=zoom/100;
+    stx.transform(1/(tem),0,0,1/(tem),0,0);
+    mtx.transform(1/(tem),0,0,1/(tem),0,0);
+    ttx.transform(1/(tem),0,0,1/(tem),0,0);
+    btx.transform(1/(tem),0,0,1/(tem),0,0);
+    tem=(e.deltaY**3)/100000;
+    if(zoom-tem >= 100){
+      zoom-=tem;
     }
     pr=e.deltaY;
     /*
@@ -26,16 +27,17 @@ function resize(e){
     btx.clearRect(0,0,actw,acth);
     */
 
-
-    stx.transform(zoom/100,0,0,zoom/100,0,0);
-    mtx.transform(zoom/100,0,0,zoom/100,0,0);
-    ttx.transform(zoom/100,0,0,zoom/100,0,0);
-    btx.transform(zoom/100,0,0,zoom/100,0,0);
-
-    stx.translate(-actw/2,-acth/2);
-    mtx.translate(-actw/2,-acth/2);
-    ttx.translate(-actw/2,-acth/2);
-    btx.translate(-actw/2,-acth/2);
+    tem=zoom/100;
+    stx.transform(tem,0,0,tem,0,0);
+    mtx.transform(tem,0,0,tem,0,0);
+    ttx.transform(tem,0,0,tem,0,0);
+    btx.transform(tem,0,0,tem,0,0);
+    tem2=-tem2;
+    tem3=-tem3;
+    stx.translate(tem2,tem3);
+    mtx.translate(tem2,tem3);
+    ttx.translate(tem2,tem3);
+    btx.translate(tem2,tem3);
     redraw();
   }
 }
@@ -44,6 +46,7 @@ function redraw(){
   stx.strokeStyle = "rgba(110, 110, 110, 0.05)";
   busses.forEach(TrackUpdate);
   stx.strokeStyle="black";
+  temporary_1=actw/(1000*Math.cbrt(zoom));
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.clearRect(0,0,actw,acth);
@@ -60,12 +63,12 @@ function TrackUpdate(Ob){
 }
 function StopDraw(Ob){
   stx.beginPath();
-  stx.arc(Ob.x, Ob.y, actw/(1000*Math.cbrt(zoom)), 0, Math.PI*2);
+  stx.arc(Ob.x, Ob.y,temporary_1, 0, pi2);
   stx.stroke();
 }
 function coorToCanvas(E,N){
-  var x=(E-left)*middle.width/width;
-  var y=((ttop-N)*middle.height/height);
+  var x=(E-left)*mwdw;
+  var y=((ttop-N)*mhdh);
   return [x,y];
 }
 var prX=0;
@@ -74,8 +77,9 @@ function move(e){
   if(down){
     var x = e.clientX;
     var y = e.clientY;
-    var dex=(x-prX)/(zoom/100);
-    var dey=(y-prY)/(zoom/100);
+    let tem=zoom/100;
+    var dex=(x-prX)/(tem);
+    var dey=(y-prY)/(tem);
     prX=x;
     prY=y;
     stx.clearRect(0,0,actw,acth);
@@ -102,3 +106,5 @@ function StopHover(Ob){
     stx.fillRect(Ob.x, Ob.y, 10, 10);
   }
 }
+var temporary_1;
+var pi2=Math.PI*2;
