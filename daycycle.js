@@ -21,24 +21,28 @@ function updateTime(){
       lvfilter = "brightness(30%)";
       body.style.backgroundColor = "#510a5e";
       pod = "Vakars";
+      cBusColor = "#7aacff";
       redraw();
     }
     else if(localTime >= dayLength/2 && pod == "Rīts"){
-      lvfilter = "brightness(100%)";
+      lvfilter = "brightness(90%)";
       body.style.backgroundColor = "#901FBA";
       pod = "Diena";
+      cBusColor = "#87b4ff";
       redraw();
     }
     else if(localTime >= dayLength/4 && pod == "Nakts"){
-      lvfilter = "brightness(90%)";
+      lvfilter = "brightness(85%)";
       body.style.backgroundColor = "#a11faf";
       pod = "Rīts";
+      cBusColor = "#87b4ff";
       redraw();
     }
     else if(localTime >= 0 && localTime < dayLength/4 && pod == "Vakars"){
       lvfilter = "brightness(10%)";
       body.style.backgroundColor = "#220430";
       pod = "Nakts";
+      cBusColor = "#7aacff";
       redraw();
     }
     podDisplay.innerHTML = "DD: " + pod;
@@ -53,13 +57,7 @@ function updateTime(){
     if(!a.going){
       if(a.times[0][0]==calhours && a.times[0][1]==calminutes){
         a.going=true;
-        var k=true;
-        for(var i=0;i<a.times.length;i++){
-          if(a.times[i][0]!=0 || a.times[i][1]!=0)k=false;
-        }
-        if(k){
-          errs.push(index);
-        }
+        Console.log("Autobuss no " + a.route[0].name + " ir izbraucis, galapunktā " + a.route[a.route.length-1].name + " būs " + String(a.times[a.times.length-1]).replace(",",":"));
       }
     }else{//6 updates in one in-game minute
       var sw=false;
@@ -98,12 +96,4 @@ function updateTime(){
       }
     }
   });
-  if(!rem){
-    for(var i=errs.length-1;i>=0;i--){
-      busses.splice(errs[i],1);
-    }
-    rem=true;
-  }
 }
-var errs=[];
-var rem=false;
