@@ -1,9 +1,9 @@
-var localTime = 300;
+var localTime = 0;
 var day = 0;
 var showDay = false;
+var pod = "Vakars";
 var calhours;
 var calminutes;
-var pod = "Nakts";
 var dayLength = 1200;
 function updateTime(){
   //1200 secs
