@@ -44,7 +44,7 @@ video{
   transition: all 0.5s ease;
   position: absolute;
   width: 100px;
-  height: 3%;
+  height: 5%;
   border: none;
   background-color: transparent;
   padding: 2px 2px;
@@ -64,11 +64,11 @@ video{
   width: 100%;
   opacity: 0;
   font-size: 1.2rem;
-  top: 7px;
+  top: 9px;
 }
 #podDisplay{
   transform: translateX(-10%);
-  top: 25px;
+  top: 28px;
   width: 100%;
   opacity: 0;
   font-size: 1.2rem;
@@ -77,13 +77,13 @@ video{
   left: 0%;
 }
 #timeContainer:hover #dayDisplay{
-  transform: translateX(-10%);
+  transform: translateX(2%);
   left: 100%;
   opacity: 1;
   width: 100%;
 }
 #timeContainer:hover #podDisplay{
-  transform: translateX(-6%);
+  transform: translateX(2%);
   left: 100%;
   opacity: 1;
   width: 150%;
