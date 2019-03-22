@@ -42,18 +42,10 @@ function resize(e){
   }
 }
 function redraw(){
-  switch (lvfilter){
-    case "brightness(100%)":
-    case "brightness(90%)":
-      stx.strokeStyle="black";
-    break;
-    default:
-      stx.strokeStyle="white";
-  }
   stx.lineWidth = 1;
-  stx.strokeStyle = "rgba(0, 0, 0, 0.05)";
+  stx.strokeStyle = "rgba(110, 110, 110, 0.05)";
   busses.forEach(TrackUpdate);
-  stx.strokeStyle = "black";
+  stx.strokeStyle="black";
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.clearRect(0,0,actw,acth);

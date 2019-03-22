@@ -5,6 +5,7 @@ var reA=[];//returned array
 var done=false;
 var i=0;
 var troute;
+var errs=[];
 function daritajs(){
   var bigA=str.split("\n");
   var IDSaf=[];
@@ -30,6 +31,18 @@ function daritajs(){
     });
     busses.push(new Bus(ti));
   });
+  busses.forEach(function(a, index){
+    var k=true;
+    for(var i=0;i<a.times.length;i++){
+      if(a.times[i][0]!=0 || a.times[i][1]!=0)k=false;
+    }
+    if(k){
+      errs.push(index);
+    }
+  });
+  for(var i=errs.length-1;i>=0;i--){
+    busses.splice(errs[i],1);
+  }
   done=true;
 }
 function recycle(){
