@@ -15,9 +15,10 @@ function resize(e){
     mtx.transform(1/(tem),0,0,1/(tem),0,0);
     ttx.transform(1/(tem),0,0,1/(tem),0,0);
     btx.transform(1/(tem),0,0,1/(tem),0,0);
-    tem=(e.deltaY**3)/100000;
-    if(zoom-tem >= 100){
-      zoom-=tem;
+    if(zoom > 100 && Math.sign(e.deltaY)==1){
+      zoom/=1.1;
+    }else if(zoom<1000 && Math.sign(e.deltaY)==-1){
+      zoom*=1.1;
     }
     pr=e.deltaY;
     /*
@@ -46,7 +47,7 @@ function redraw(){
   stx.strokeStyle = "rgba(110, 110, 110, 0.05)";
   busses.forEach(TrackUpdate);
   stx.strokeStyle="black";
-  temporary_1=actw/(1000*Math.cbrt(zoom));
+  temporary_1=actw/(zoom*100);
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.clearRect(0,0,actw,acth);

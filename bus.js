@@ -25,6 +25,11 @@ function BusUpdate(Ob){if(Ob.going){
   var dest=Ob.route[destindex];
   var dx=dest.x-Ob.x;
   var dy=dest.y-Ob.y;
+  if(dx==0 && dy==0 && Ob.place!=Ob.route.length-1){
+    dest=Ob.route[destindex+1];
+    dx=dest.x-Ob.x;
+    dy=dest.y-Ob.y;
+  }
   var distance=Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
   ttx.strokeStyle = "black";
   ttx.lineWidth = actw*0.00015;

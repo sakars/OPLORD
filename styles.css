@@ -33,7 +33,7 @@ video{
   background-color: rgba(255, 255, 255, 0.2);
   font-family: Montserrat;
   text-shadow: 1px 1px black;
-  font-size: 1.3rem;
+  font-size: 1.5vw;
   color: white;
 }
 ::-webkit-scrollbar {
@@ -43,7 +43,7 @@ video{
 #timeContainer{
   transition: all 0.5s ease;
   position: absolute;
-  width: 100px;
+  width: 5%;
   height: 5%;
   border: none;
   background-color: transparent;
@@ -57,13 +57,13 @@ video{
   transition: all 0.5s ease;
   color: white;
   font-family: Montserrat;
-  font-size: 3rem;
+  font-size: 4vw;
   width: 50%;
 }
 #dayDisplay{
   width: 100%;
   opacity: 0;
-  font-size: 1.2rem;
+  font-size: 1.5vw;
   top: 9px;
 }
 #podDisplay{
@@ -76,9 +76,9 @@ video{
 #timeSlider{
   transition: all 0.5s ease;
   position: absolute;
-  top: 1.9rem;
+  top: 4.5vw;
   width: 0px;
-  height: 20px;
+  height: 1vw;
   background-image: linear-gradient(to right, rgba(181, 65, 244, 1) , rgba(152, 244, 66, 1) , rgba(66, 244, 244, 1));
   -webkit-appearance: none;
   outline: none;
