@@ -48,6 +48,7 @@ function redraw(){
       stx.strokeStyle="white";
   }
   stx.lineWidth = 1;
+  stx.strokeStyle = "rgba(0, 0, 0, 0.05)";
   busses.forEach(TrackUpdate);
   stx.strokeStyle = "black";
   stops.forEach(StopDraw);
@@ -57,7 +58,6 @@ function redraw(){
   //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
 }
 function TrackUpdate(Ob){
-  stx.strokeStyle = "rgba(0, 0, 0, 0.05)";
   stx.beginPath();
   stx.moveTo(Ob.route[0].x, Ob.route[0].y);
   Ob.route.forEach(function(A){
