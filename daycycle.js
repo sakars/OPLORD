@@ -28,14 +28,14 @@ function updateTime(){
       lvfilter = "brightness(90%)";
       body.style.backgroundColor = "#901FBA";
       pod = "Diena";
-      cBusColor = "#87b4ff";
+      cBusColor = "#0e4877";
       redraw();
     }
     else if(localTime >= dayLength/4 && pod == "Nakts"){
       lvfilter = "brightness(85%)";
       body.style.backgroundColor = "#a11faf";
       pod = "Rīts";
-      cBusColor = "#87b4ff";
+      cBusColor = "#0e4877";
       redraw();
     }
     else if(localTime >= 0 && localTime < dayLength/4 && pod == "Vakars"){
