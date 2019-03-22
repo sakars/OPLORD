@@ -33,7 +33,7 @@ video{
   background-color: rgba(255, 255, 255, 0.2);
   font-family: Montserrat;
   text-shadow: 1px 1px black;
-  font-size: 25px;
+  font-size: 1.5rem;
   color: white;
 }
 ::-webkit-scrollbar {
@@ -44,7 +44,7 @@ video{
   transition: all 0.5s ease;
   position: absolute;
   width: 100px;
-  height: 3%;
+  height: 5%;
   border: none;
   background-color: transparent;
   padding: 2px 2px;
@@ -57,33 +57,33 @@ video{
   transition: all 0.5s ease;
   color: white;
   font-family: Montserrat;
-  font-size: 40px;
+  font-size: 3rem;
   width: 50%;
 }
 #dayDisplay{
   width: 100%;
   opacity: 0;
-  font-size: 17px;
-  top: 7px;
+  font-size: 1.2rem;
+  top: 9px;
 }
 #podDisplay{
   transform: translateX(-10%);
-  top: 25px;
+  top: 28px;
   width: 100%;
   opacity: 0;
-  font-size: 17px;
+  font-size: 1.2rem;
 }
 #timeContainer:hover #timeDisplay{
   left: 0%;
 }
 #timeContainer:hover #dayDisplay{
-  transform: translateX(-10%);
+  transform: translateX(2%);
   left: 100%;
   opacity: 1;
   width: 100%;
 }
 #timeContainer:hover #podDisplay{
-  transform: translateX(-6%);
+  transform: translateX(2%);
   left: 100%;
   opacity: 1;
   width: 150%;
