@@ -15,8 +15,8 @@ function resize(e){
     ttx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
     btx.transform(1/(zoom/100),0,0,1/(zoom/100),0,0);
 
-    if(zoom >= 100){
-    zoom-=(e.deltaY**3)/100000;
+    if(zoom-(e.deltaY**3)/100000 >= 100){
+      zoom-=(e.deltaY**3)/100000;
     }
     pr=e.deltaY;
     /*
