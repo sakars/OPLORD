@@ -53,15 +53,13 @@ Your browser does not support video playback.
   function Console2(){
     this.log = function(e){
       console2.innerHTML += "[ " + timeDisplay.innerHTML + " ] " + e + "<br>";
+      console2.scrollTop = console2.scrollHeight;
     }
   }
   function EyeOpener(Ob, index){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
     stops[index].x=l[0];
     stops[index].y=l[1];
-    stx.beginPath();
-    stx.arc((l[0]), (l[1]), 2.5/3000*actw, 0, Math.PI*2);
-    stx.fill();
     //ctx.fillRect(l[0]-2,l[1]-2,4,4);
   }
   function init(){//initializes canvas and busstops
@@ -129,6 +127,7 @@ Your browser does not support video playback.
     mtx.save();
 
     stops.forEach(EyeOpener);
+    stops.forEach(StopDraw);
     busses.forEach(coorInit);
     //busses
     /*
@@ -138,11 +137,11 @@ Your browser does not support video playback.
     */
     updateTime();
 
-    body.addEventListener("mousewheel", resize, false);
-    body.addEventListener("DOMMouseScroll", resize, false);
-    body.addEventListener("mouseup", function(){down=false;}, false);
-    body.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
-    body.addEventListener("mousemove", move, false);
+    topUpdate.addEventListener("mousewheel", resize, false);
+    topUpdate.addEventListener("DOMMouseScroll", resize, false);
+    topUpdate.addEventListener("mouseup", function(){down=false;}, false);
+    topUpdate.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
+    topUpdate.addEventListener("mousemove", move, false);
 
     interval=setInterval(update,1000/60);
   }
