@@ -30,15 +30,11 @@ function BusUpdate(Ob){if(Ob.going){
   ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-Ob.x,-Ob.y);
 }}
-
 function coorInit(Ob){
   Ob.x=Ob.route[0].x;
   Ob.y=Ob.route[0].y;
 }
 function drawBus(x, y, scale, color){
-    try{
-      throw "k";
-    }catch(e){}
     ttx.lineWidth = scale/10;
     ttx.fillStyle = color;
     ttx.strokeRect(x, y - scale/6, scale/2, scale/3);
