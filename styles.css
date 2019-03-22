@@ -2,6 +2,7 @@ body{
   margin: 0;
   background-color: #901FBA;
   zoom: 50%;
+  transition: background-color 30s ease;
 }
 canvas{
   position: absolute;
@@ -19,6 +20,25 @@ video{
 .center{
   left: 50%;
   transform: translateX(-50%);
+}
+#console2{
+  padding: 15px 15px;
+  transition: all 1s ease;
+  opacity: 0;
+  position: absolute;
+  right: 0px;
+  overflow-y: scroll;
+  height: 50px;
+  width: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-family: Montserrat;
+  text-shadow: 1px 1px black;
+  font-size: 25px;
+  color: white;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
 #timeContainer{
   transition: all 0.5s ease;

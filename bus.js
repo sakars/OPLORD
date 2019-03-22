@@ -28,8 +28,9 @@ function BusUpdate(Ob){if(Ob.going){
   ttx.rotate(Math.atan2(dy,dx));
   drawBus(0, 0, actw*0.0015, "#f4ee42");
   ttx.rotate(-Math.atan2(dy,dx));
-  ttx.translate(-(Ob.x),-(Ob.y));
+  ttx.translate(-Ob.x,-Ob.y);
 }}
+
 function coorInit(Ob){
   Ob.x=Ob.route[0].x;
   Ob.y=Ob.route[0].y;

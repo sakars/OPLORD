@@ -17,9 +17,10 @@
   <div class="center" id="podDisplay">POD: Night</div>
 </div>
 <video class="center" id = "loader" width="2200" height="3600" loop>
-  <source src="Videos/Animation_load_1.mp4" type="video/mp4">
+  <source src="Videos/Animation_load_1_1.mp4" type="video/mp4">
 Your browser does not support video playback.
 </video>
+<div id="console2"></div>
 <script src="recycler.js"></script>
 <script src="drawer.js"></script>
 <script src="bus.js"></script>
@@ -27,12 +28,7 @@ Your browser does not support video playback.
 <script src="daycycle.js"></script>
 <script>
   //getting background image
-  body.addEventListener("mousewheel", resize, false);
-  body.addEventListener("DOMMouseScroll", resize, false);
   var down=false;
-  body.addEventListener("mouseup", function(){down=false;}, false);
-  body.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
-  body.addEventListener("mousemove", move, false);
 
   var latv=new Image();
   latv.src="Images/LV_2_lv_st_19.png";
@@ -52,13 +48,18 @@ Your browser does not support video playback.
   var pr=0;
   var stackSize=0;
   var interval;
+  var lvfilter = "brightness(100%)";
+  var Console = new Console2();
+  function Console2(){
+    this.log = function(e){
+      console2.innerHTML += "[ " + timeDisplay.innerHTML + " ] " + e + "<br>";
+      console2.scrollTop = console2.scrollHeight;
+    }
+  }
   function EyeOpener(Ob, index){//shows all busstops
     var l=coorToCanvas(Ob.degE,Ob.degN);
     stops[index].x=l[0];
     stops[index].y=l[1];
-    stx.beginPath();
-    stx.arc((l[0]), (l[1]), 2.5/3000*actw, 0, Math.PI*2);
-    stx.fill();
     //ctx.fillRect(l[0]-2,l[1]-2,4,4);
   }
   function init(){//initializes canvas and busstops
@@ -105,9 +106,14 @@ Your browser does not support video playback.
       loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
       middle.style.opacity = "1";
+      middle.style.transition = "filter 20s ease";
       topUpdate.style.opacity = "1";
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";
+      console2.style.opacity = "1";
+      console2.style.width = (document.body.clientWidth - middle.width - 30) + "px";
+      console2.style.height = (window.innerHeight*2 - 30) + "px";
+      Console.log("Sveiki! Šeit redzēsiet visus izbraucošos autobusus!");
     }, 800);
     mtx.drawImage(latv,0,0,middle.width,middle.height);
     //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
@@ -121,6 +127,7 @@ Your browser does not support video playback.
     mtx.save();
 
     stops.forEach(EyeOpener);
+    stops.forEach(StopDraw);
     busses.forEach(coorInit);
     //busses
     /*
@@ -129,6 +136,12 @@ Your browser does not support video playback.
     }
     */
     updateTime();
+
+    topUpdate.addEventListener("mousewheel", resize, false);
+    topUpdate.addEventListener("DOMMouseScroll", resize, false);
+    topUpdate.addEventListener("mouseup", function(){down=false;}, false);
+    topUpdate.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
+    topUpdate.addEventListener("mousemove", move, false);
 
     interval=setInterval(update,1000/60);
   }
