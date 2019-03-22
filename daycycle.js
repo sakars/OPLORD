@@ -24,7 +24,7 @@ function updateTime(){
     timeDisplay.innerHTML = hours + ":" + minutes;
     dayDisplay.innerHTML = "  Diena: " + day;
     if(localTime >= day34 && pod == "Diena"){
-      lvfilter = "brightness(30%)";
+      lvfilter = "brightness(20%)";
       body.style.backgroundColor = "#510a5e";
       pod = "Vakars";
       cBusColor = "#7aacff";
