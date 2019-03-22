@@ -1,4 +1,3 @@
-var SpeedC=0.00002;
 var cBusColor = "#f4ee42";
 function Bus(route){
   this.route=[];

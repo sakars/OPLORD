@@ -5,6 +5,7 @@ var pod = "Vakars";
 var calhours;
 var calminutes;
 var dayLength = 1200;
+var updateCount = 50;
 function updateTime(){
   //1200 secs
   if(localTime < dayLength){
@@ -46,8 +47,8 @@ function updateTime(){
       redraw();
     }
     podDisplay.innerHTML = "DD: " + pod;
-    localTime += 0.2;
-    setTimeout(updateTime, 10);//200
+    localTime += 0.05;
+    setTimeout(updateTime, updateCount);
   }
   else{
     localTime = 0;
@@ -68,7 +69,7 @@ function updateTime(){
           if(((a.times[a.place][0]*60+a.times[a.place][1])-(a.times[a.place-1][0]*60+a.times[a.place-1][1]))<0){
             a.times[a.place][0]+=24;
           }
-          var framec=6*((a.times[a.place][0]*60+a.times[a.place][1])-(a.times[a.place-1][0]*60+a.times[a.place-1][1]));
+          var framec=16*((a.times[a.place][0]*60+a.times[a.place][1])-(a.times[a.place-1][0]*60+a.times[a.place-1][1]));
           if(framec==0)framec=1;
           a.frame=framec;
           a.delta[0]=(a.route[a.place].x-a.route[a.place-1].x)/framec;
@@ -97,3 +98,7 @@ function updateTime(){
     }
   });
 }
+timeSlider.addEventListener("input",
+function(){
+  updateCount = timeSlider.value;
+});
