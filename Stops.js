@@ -5,7 +5,7 @@ function Stop(name, E, N,Id){
     this.Id=Id;
     IDstop.push([this.Id, this]);
 }
-Stop.prototype.findById=function(Id){
+function findById(Id){
   for(var i=0;i<IDstop.length;i++){
     if(Number(IDstop[i][0])==Number(Id)){
       return IDstop[i][1];
