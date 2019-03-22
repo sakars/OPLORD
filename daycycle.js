@@ -12,6 +12,7 @@ var day2=dayLength/2;
 var temporary_2;
 var temporary_3;
 var updateCount;
+var instantu=false;
 function updateTime(){
   //1200 secs
   if(localTime < dayLength){
@@ -54,11 +55,11 @@ function updateTime(){
     }
     podDisplay.innerHTML = "DD: " + pod;
     localTime += 0.05;
-    setTimeout(updateTime, updateCount);
+    instantu=false;
   }
   else{
     localTime = 0;
-    updateTime();
+    instantu=true;
   }
   busses.forEach(function(a,index){
     temporary_2=a.times;
@@ -105,6 +106,7 @@ function updateTime(){
       }
     }
   });
+  setTimeout(updateTime,instantu ? 0 : updateCount);
 }
 timeSlider.addEventListener("change",
 function(){
