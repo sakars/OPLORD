@@ -15,6 +15,7 @@
   <div class="center" id="timeDisplay"></div>
   <div class="center" id="dayDisplay"></div>
   <div class="center" id="podDisplay">POD: Night</div>
+<input class="center" type="range" min="10" max="50" value="50" class="slider" id="timeSlider">
 </div>
 <video class="center" id = "loader" width="2200" height="3600" loop>
   <source src="Videos/Animation_load_1_1.mp4" type="video/mp4">
@@ -94,7 +95,6 @@ Your browser does not support video playback.
     btx.translate((window.innerWidth-actw)/2,0);
     ttx.translate((window.innerWidth-actw)/2,0);
 */
-    SpeedC=SpeedC*actw;
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
   }
@@ -154,7 +154,7 @@ Your browser does not support video playback.
 }
   function update(){//main update
     stackSize++;
-    if(stackSize>=2){return;}
+    if(stackSize>=4){return;}
     ttx.clearRect(0,0,actw,acth);
     ttx.fillStyle="red";
     busses.forEach(BusUpdate);//@bus.js
