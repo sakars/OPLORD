@@ -11,6 +11,7 @@ var day34=day4*3;
 var day2=dayLength/2;
 var temporary_2;
 var temporary_3;
+var updateCount;
 function updateTime(){
   //1200 secs
   if(localTime < dayLength){
@@ -105,7 +106,8 @@ function updateTime(){
     }
   });
 }
-timeSlider.addEventListener("input",
+timeSlider.addEventListener("change",
 function(){
-  updateCount = timeSlider.value;
+  updateCount = 60-timeSlider.value;
+  console.log(updateCount);
 });
