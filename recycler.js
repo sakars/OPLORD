@@ -21,10 +21,13 @@ function daritajs(){
   troute=troute.split("\n");
   troute.forEach(function(a){
     var te=a.split(" ");
+    var ti=[];
     te.forEach(function(a,i){
-      te[i]=new Stop("",0,0,"-12344").findById(a);
+      if(i%2==1){
+        ti.push([a,te[i+1]]);
+      }
     });
-    busses.push(new Bus(te));
+    busses.push(new Bus(ti));
   });
   done=true;
 }
@@ -41,7 +44,7 @@ function recycle(){
   xhr.send();
 }
 function daritajs1(){
-  var fileURL = "saraksti.txt";
+  var fileURL = "timetable.txt";
   var xhr = new XMLHttpRequest();
   xhr.open('GET', fileURL);
   xhr.onreadystatechange = function() {
