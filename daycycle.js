@@ -43,7 +43,7 @@ function updateTime(){
     }
     podDisplay.innerHTML = "DD: " + pod;
     localTime += 0.2;
-    setTimeout(updateTime, 200);//200
+    setTimeout(updateTime, 10);//200
   }
   else{
     localTime = 0;

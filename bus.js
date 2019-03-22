@@ -4,7 +4,11 @@ function Bus(route){
   this.times=[];
   for(var i=0;i<route.length;i++){
     this.route.push(findById(route[i][0]));
-    this.times.push([Number(route[i][1].substring(0,2)),Number(route[i][1].substring(3,5))]);
+    if(route[i][1]){
+      this.times.push([Number(route[i][1].substring(0,2)),Number(route[i][1].substring(3,5))]);
+    }else{
+      this.times.push([0,0]);
+    }
   }
   this.place=0;
   this.x=route[0].x;

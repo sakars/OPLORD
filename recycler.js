@@ -20,6 +20,7 @@ function daritajs(){
   );
   troute=troute.split("\n");
   troute.forEach(function(a){
+    if(!a)return;
     var te=a.split(" ");
     var ti=[];
     te.forEach(function(a,i){
