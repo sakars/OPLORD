@@ -63,6 +63,7 @@ function updateTime(){
     instantu=false;
   }
   else{
+    day++;
     localTime = 0;
     instantu=true;
   }
