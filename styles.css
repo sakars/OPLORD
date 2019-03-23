@@ -12,10 +12,10 @@ canvas{
 }
 video{
   position: absolute;
-  top: -350px;
   opacity: 0;
   transition: all 0.5s ease;
   zoom: 50%;
+  height: 100%;
 }
 #imageContainer{
   transition: all 5s ease;
