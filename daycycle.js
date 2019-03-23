@@ -73,7 +73,7 @@ function updateTime(){
     if(!a.going){//sets bus to go if ready
       if(temporary_2[0][0]==calhours && temporary_2[0][1]==calminutes){
         a.going=true;
-        Console.log("Autobuss no " + temporary_3[0].name + " ir izbraucis, galapunktā " + temporary_3[temporary_3.length-1].name + " būs " + String(temporary_2[temporary_2.length-1]).replace(",",":"));
+        Console.log("Autobuss no " + temporary_3[0].name + " ir izbraucis, galapunktā " + temporary_3[temporary_3.length-1].name + " būs " + String(temporary_2[temporary_2.length-1]).replace(",",":").replace("24:","00:"));
       }
     }else{//16 updates in one in-game minute
       var sw=false;
