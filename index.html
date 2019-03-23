@@ -7,12 +7,15 @@
 <title>Transport</title>
 </head>
 <body id="body">
+<div id = "imageContainer">
+  <img src="Images/LV_stars.png" id = "LVstars">
+</div>
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
 <div class="center" id="timeContainer">
-  <div class="center" id="timeDisplay"></div>
+  <div class="center" id="timeDisplay">00:00</div>
   <div class="center" id="dayDisplay"></div>
   <div class="center" id="podDisplay">POD: Night</div>
 <input class="center" type="range" min="10" max="50" value="10" class="slider" id="timeSlider">
@@ -28,19 +31,20 @@ Your browser does not support video playback.
 <script src="Stops.js"></script>
 <script src="daycycle.js"></script>
 <script>
-  //getting background image
-  var down=false;
 
+  //getting background image
   var latv=new Image();
   latv.src="Images/LV_2_lv_st_19.png";
-  var orangeLayer = new Image();
-  orangeLayer.src = "Images/LV_2_orange.png";
+
+  //scale constants
+  const width = 8.25;
+  const height = 3.08;
+  const left = 20.41;
+  const ttop = 58.44;
+
   //declaring globbal variables
   var stops;
-  var width=8.25;
-  var height=3.08;
-  var left=20.41;
-  var ttop=58.44;
+  var down=false;
   var mid=left+width/2;
   var acth;
   var actw;
@@ -49,11 +53,13 @@ Your browser does not support video playback.
   var pr=0;
   var stackSize=0;
   var interval;
-  var lvfilter = "brightness(100%)";
+  var loaderTimeout = false;
+  var lvfilter = "brightness(100%)";//filter for canvas - day/night
   var Console = new Console2();
   var mwdw;//middle.width/width
   var mhdh;//middle.height/height
-  function Console2(){
+
+  function Console2(){//Console - textbox on the right
     this.log = function(e){
       console2.innerHTML += "[ " + timeDisplay.innerHTML + " ] " + e + "<br>";
       console2.scrollTop = console2.scrollHeight;
@@ -104,11 +110,14 @@ Your browser does not support video playback.
       return;
     }
     stops=reA;//@recycler.js
-    //middle
     loader.style.opacity = "0";
-    setTimeout(function(){
+    loaderTimeout = false;
+    Console.log("Sveiki! Šeit redzēsiet visus izbraucošos autobusus!");
+    body.style.transition = "background-color 5s ease";
+    setTimeout(function(){//when lodaer stops fading out
       loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
+      imageContainer.style.opacity = "1";
       middle.style.opacity = "1";
       middle.style.transition = "filter 50s ease";
       topUpdate.style.opacity = "1";
@@ -117,13 +126,11 @@ Your browser does not support video playback.
       console2.style.opacity = "1";
       console2.style.width = (document.body.clientWidth - middle.width - 30) + "px";
       console2.style.height = (window.innerHeight*2 - 30) + "px";
-      Console.log("Sveiki! Šeit redzēsiet visus izbraucošos autobusus!");
     }, 800);
+    setTimeout(function(){//sets body bg transition for normal cycle
+      body.style.transition = "background-color 50s ease";
+    }, 5000);
     mtx.drawImage(latv,0,0,middle.width,middle.height);
-    //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
-    mtx.strokeStyle="black";
-    mtx.fillStyle="white";
-    mtx.lineWidth = 2;
 
     stx.save();
     ttx.save();
@@ -140,18 +147,21 @@ Your browser does not support video playback.
     }
     */
     updateTime();
-
+    //event listeners
     topUpdate.addEventListener("mousewheel", resize, false);
     topUpdate.addEventListener("DOMMouseScroll", resize, false);
     topUpdate.addEventListener("mouseup", function(){down=false;}, false);
     topUpdate.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
     topUpdate.addEventListener("mousemove", move, false);
 
+    //starts update with 60fps
     interval=setInterval(update,1000/60);
   }
+
   function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+  }
+
   function update(){//main update
     stackSize++;
     if(stackSize>=4){return;}
@@ -162,14 +172,22 @@ Your browser does not support video playback.
     //setTimeout(update,10);
   }
 
-  function fadeIn(){
+  function fadeIn(){//loader fade at the start
     loader.style.opacity = "1";
+    tryLoaderPlay();
+    setTimeout(init, 300);
+  }
+
+  function tryLoaderPlay(){//tries playing loader animation
     try{
       document.getElementById("loader").play();
     }
     catch(e){}
-    setTimeout(init, 300);
+    if(loaderTimeout){
+      setTimeout(tryLoaderPlay, 2000);
+    }
   }
+
   window.addEventListener('load', fadeIn, false);
 </script>
 </body>

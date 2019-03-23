@@ -17,6 +17,18 @@ video{
   transition: all 0.5s ease;
   zoom: 50%;
 }
+#imageContainer{
+  transition: all 5s ease;
+  opacity: 0;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+}
+#LVstars{
+  display:block;
+  zoom: 24%;
+  top: -10%;
+}
 .center{
   left: 50%;
   transform: translateX(-50%);
@@ -37,8 +49,8 @@ video{
   color: white;
 }
 ::-webkit-scrollbar {
-  width: 0px;  /* remove scrollbar space */
-  background: transparent;  /* optional: just make scrollbar invisible */
+  width: 0px;
+  background: transparent;
 }
 #timeContainer{
   transition: all 0.5s ease;
@@ -57,7 +69,7 @@ video{
   transition: all 0.5s ease;
   color: white;
   font-family: Montserrat;
-  font-size: 4vw;
+  font-size: 3.5vw;
   width: 50%;
 }
 #dayDisplay{
@@ -68,7 +80,7 @@ video{
 }
 #podDisplay{
   transform: translateX(-10%);
-  top: 28px;
+  top: 32px;
   width: 100%;
   opacity: 0;
   font-size: 1.2rem;

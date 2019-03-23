@@ -1,4 +1,4 @@
-function resize(e){
+function resize(e){//resize, move canvas - zoom, drag
   if(Math.sign(e.deltaY) == -1 || zoom > 100){
     stx.clearRect(0,0,actw,acth);
     mtx.clearRect(0,0,actw,acth);
@@ -42,7 +42,7 @@ function resize(e){
     redraw();
   }
 }
-function redraw(){
+function redraw(){//clear and draw everything
   stx.lineWidth = 1;
   stx.strokeStyle = "rgba(110, 110, 110, 0.05)";
   busses.forEach(TrackUpdate);
@@ -54,7 +54,7 @@ function redraw(){
   mtx.drawImage(latv,0,0,middle.width,middle.height);
   //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
 }
-function TrackUpdate(Ob){
+function TrackUpdate(Ob){//all routes draw
   stx.beginPath();
   stx.moveTo(Ob.route[0].x, Ob.route[0].y);
   Ob.route.forEach(function(A){
@@ -62,12 +62,12 @@ function TrackUpdate(Ob){
   });
   stx.stroke();
 }
-function StopDraw(Ob){
+function StopDraw(Ob){//bus stop draw
   stx.beginPath();
   stx.arc(Ob.x, Ob.y,temporary_1, 0, pi2);
   stx.stroke();
 }
-function coorToCanvas(E,N){
+function coorToCanvas(E,N){//coordinates to canvas coordinates
   var x=(E-left)*mwdw;
   var y=((ttop-N)*mhdh);
   return [x,y];
@@ -75,7 +75,7 @@ function coorToCanvas(E,N){
 var prX=0;
 var prY=0;
 function move(e){
-  if(down){
+  if(down){//map drag
     var x = e.clientX;
     var y = e.clientY;
     let tem=zoom/100;
@@ -103,7 +103,6 @@ function move(e){
 }
 function StopHover(Ob){
   if(prX < Ob.x + 3 && prX > Ob.x - 3 && prY > Ob.y - 3 && prY < Ob.y + 3){
-    Console.log("Trapi");
     stx.fillRect(Ob.x, Ob.y, 10, 10);
   }
 }

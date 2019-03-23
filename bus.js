@@ -33,6 +33,8 @@ function BusUpdate(Ob){if(Ob.going){
   var distance=Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
   ttx.strokeStyle = "black";
   ttx.lineWidth = actw*0.00015;
+
+  //rotate and draw bus
   ttx.translate(Ob.x,Ob.y);
   ttx.rotate(Math.atan2(dy,dx));
   drawBus(0, 0, actw*0.0015, cBusColor);
@@ -43,8 +45,8 @@ function coorInit(Ob){
   Ob.x=Ob.route[0].x;
   Ob.y=Ob.route[0].y;
 }
-function drawBus(x, y, scale, color){
-    ttx.lineWidth = scale/3;
+function drawBus(x, y, scale, color){//bus design
+    ttx.lineWidth = scale/5;
     ttx.fillStyle = color;
     ttx.strokeRect(x, y - scale/6, scale/2, scale/3);
     ttx.strokeRect(x - scale/2, y - scale/5, scale/1.1, scale*2/5);
@@ -55,6 +57,6 @@ function drawBus(x, y, scale, color){
         ttx.moveTo(x + scale*i/7 + scale/20, y - scale/8);
         ttx.lineTo(x + scale*i/7 + scale/20, y + scale/8);
     }
-    ttx.lineWidth = scale/80;
+    ttx.lineWidth = scale/60;
     ttx.stroke();
 }
