@@ -76,14 +76,14 @@ video{
   width: 100%;
   opacity: 0;
   font-size: 1.5vw;
-  top: 9px;
+  top: 0.5vw;
 }
 #podDisplay{
   transform: translateX(-10%);
-  top: 32px;
+  top: 2.2vw;
   width: 100%;
   opacity: 0;
-  font-size: 1.2rem;
+  font-size: 1.5vw;
 }
 #timeSlider{
   transition: all 0.5s ease;
@@ -121,7 +121,7 @@ video{
   width: 150%;
 }
 #timeContainer:hover #timeSlider{
-  transform: translateX(-30%);
+  transform: translateX(-8vw);
   opacity: 1;
   width: 200%;
 }
