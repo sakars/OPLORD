@@ -1,4 +1,4 @@
-var localTime = 0; //time in seconds
+var localTime = 300; //time in seconds
 var day = 0;
 var pod = "Vakars"; //part of day
 var calhours;
@@ -89,6 +89,9 @@ function updateTime(){
           a.frame=framec;
           a.delta[0]=(temporary_3[a.place].x-temporary_3[a.place-1].x)/framec;
           a.delta[1]=(temporary_3[a.place].y-temporary_3[a.place-1].y)/framec;
+          if(Math.sqrt(Math.pow(a.delta[0],2)+Math.pow(a.delta[1],2))>2/*  || Math.sqrt(Math.pow(a.delta[0],2)+Math.pow(a.delta[1],2))<0.000001*/){
+            console.log(a);
+          }
           sw=true;
         }else{
           a.waited++;
