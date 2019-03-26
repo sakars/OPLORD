@@ -56,12 +56,15 @@ Your browser does not support video playback.
   var loaderTimeout = false;
   var lvfilter = "brightness(100%)";//filter for canvas - day/night
   var Console = new Console2();
+  var consoleText = [];
   var mwdw;//middle.width/width
   var mhdh;//middle.height/height
 
   function Console2(){//Console - textbox on the right
     this.log = function(e){
-      console2.innerHTML += "[ " + timeDisplay.innerHTML + " ] " + e + "<br>";
+      if(consoleText.length > 40) consoleText.shift();
+      consoleText.push("[ " + timeDisplay.innerHTML + " ] " + e + "<br>");
+      console2.innerHTML = consoleText.join("");
       console2.scrollTop = console2.scrollHeight;
     }
   }
