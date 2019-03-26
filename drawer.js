@@ -4,22 +4,21 @@ function resize(e){//resize, move canvas - zoom, draw
     mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    let tem2=(actw/2)*CanvasD.zoom/100;
-    let tem3=(acth/2)*CanvasD.zoom/100;
-    CanvasD.x+=tem2;
-    CanvasD.y+=tem3;
-
-    let tem=CanvasD.zoom/100;
+    prX = e.clientX;
+    prY = e.clientY;
+    let tem2=(CanvasD.x+(prX*2*CanvasD.zoom/100));//kx
+    let tem3=(CanvasD.y+(prY*2*CanvasD.zoom/100));
+    let tem=CanvasD.zoom;
     if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
       CanvasD.zoom/=1.1;
     }else if(CanvasD.zoom<1000 && Math.sign(e.deltaY)==-1){
       CanvasD.zoom*=1.1;
     }
     pr=e.deltaY;
-    tem2=(actw/2)*CanvasD.zoom/100;
-    tem3=(acth/2)*CanvasD.zoom/100;
-    CanvasD.x-=tem2;
-    CanvasD.y-=tem3;
+    //CanvasD.x=tem2-((tem2-CanvasD.x)/tem*CanvasD.zoom);
+    //CanvasD.y=tem3-((tem3-CanvasD.y)/tem*CanvasD.zoom);
+    CanvasD.x=prX*2-((prX*2-CanvasD.x)/(tem/100)*(CanvasD.zoom/100));
+    CanvasD.y=prY*2-((prY*2-CanvasD.y)/(tem/100)*(CanvasD.zoom/100));
     redraw();
   }
 }
@@ -74,6 +73,7 @@ function move(e){
   }else{
     prX = e.clientX;
     prY = e.clientY;
+    //console.log(prX,prY);
     //stops.forEach(StopHover);
   }
 }
