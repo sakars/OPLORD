@@ -6,8 +6,6 @@ function resize(e){//resize, move canvas - zoom, draw
     btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     prX = e.clientX;
     prY = e.clientY;
-    let tem2=(CanvasD.x+(prX*2*CanvasD.zoom/100));//kx
-    let tem3=(CanvasD.y+(prY*2*CanvasD.zoom/100));
     let tem=CanvasD.zoom;
     if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
       CanvasD.zoom/=1.1;
