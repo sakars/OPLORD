@@ -35,11 +35,11 @@ function BusUpdate(Ob){if(Ob.going){
   ttx.lineWidth = actw*0.00015;
 
   //rotate and draw bus
-  ttx.translate(Ob.x,Ob.y);
+  ttx.translate(CanvasD.x+Ob.x*CanvasD.zoom/100,CanvasD.y+Ob.y*CanvasD.zoom/100);
   ttx.rotate(Math.atan2(dy,dx));
-  drawBus(0, 0, actw*0.0015, cBusColor);
+  drawBus(0, 0, CanvasD.zoom/30, cBusColor);
   ttx.rotate(-Math.atan2(dy,dx));
-  ttx.translate(-Ob.x,-Ob.y);
+  ttx.translate(-(CanvasD.x+Ob.x*CanvasD.zoom/100),-(CanvasD.y+Ob.y*CanvasD.zoom/100));
 }}
 function coorInit(Ob){
   Ob.x=Ob.route[0].x;
