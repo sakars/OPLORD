@@ -15,6 +15,7 @@ function Bus(route){
   this.y=route[0].y;
   this.passengerCool=5;
   this.waited=0;
+  this.highlighted=false;
   this.going=false;
   this.delta=[];
   this.count=0;
@@ -37,7 +38,7 @@ function BusUpdate(Ob){if(Ob.going){
   //rotate and draw bus
   ttx.translate(CanvasD.x+Ob.x*CanvasD.zoom/100,CanvasD.y+Ob.y*CanvasD.zoom/100);
   ttx.rotate(Math.atan2(dy,dx));
-  drawBus(0, 0, CanvasD.zoom/20, cBusColor);
+  drawBus(0, 0, CanvasD.zoom/30, cBusColor, Ob.highlighted);
   ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-(CanvasD.x+Ob.x*CanvasD.zoom/100),-(CanvasD.y+Ob.y*CanvasD.zoom/100));
 }}
@@ -45,7 +46,15 @@ function coorInit(Ob){
   Ob.x=Ob.route[0].x;
   Ob.y=Ob.route[0].y;
 }
-function drawBus(x, y, scale, color){//bus design
+function drawBus(x, y, scale, color, high){//bus design
+    ttx.lineWidth = scale/3;
+    ttx.strokeStyle = "white";
+    if(high){
+      ttx.strokeRect(x, y - scale/6, scale/2, scale/3);
+      ttx.strokeRect(x - scale/2, y - scale/5, scale/1.1, scale*2/5);
+      popup(x, y);
+    }
+    ttx.strokeStyle = "black";
     ttx.lineWidth = scale/5;
     ttx.fillStyle = color;
     ttx.strokeRect(x, y - scale/6, scale/2, scale/3);
@@ -59,4 +68,22 @@ function drawBus(x, y, scale, color){//bus design
     }
     ttx.lineWidth = scale/60;
     ttx.stroke();
+}
+function popup(tx, ty){
+  otx.fillStyle = "black";
+  otx.fillRect(tx - CanvasD.zoom/10 - 2, ty - CanvasD.zoom/8 - 2, CanvasD.zoom/5 + 4, CanvasD.zoom/11 + 4);
+  otx.beginPath();
+  otx.moveTo(tx, ty);
+  otx.lineTo(tx - CanvasD.zoom/40, ty - CanvasD.zoom/22);
+  otx.lineTo(tx + CanvasD.zoom/40, ty - CanvasD.zoom/22);
+  otx.closePath();
+  otx.stroke();
+  otx.fillStyle = "white";
+  otx.fillRect(tx - CanvasD.zoom/10, ty - CanvasD.zoom/8, CanvasD.zoom/5, CanvasD.zoom/11);
+  otx.beginPath();
+  otx.moveTo(tx, ty);
+  otx.lineTo(tx - CanvasD.zoom/40, ty - CanvasD.zoom/22);
+  otx.lineTo(tx + CanvasD.zoom/40, ty - CanvasD.zoom/22);
+  otx.closePath();
+  otx.fill();
 }

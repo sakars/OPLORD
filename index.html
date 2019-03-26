@@ -154,6 +154,7 @@ Your browser does not support video playback.
     overlay.addEventListener("mouseup", function(){down=false;}, false);
     overlay.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
     overlay.addEventListener("mousemove", move, false);
+    overlay.addEventListener("click", click, false);
 
     //starts update with 60fps
     interval=setInterval(update,1000/60);
