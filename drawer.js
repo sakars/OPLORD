@@ -1,4 +1,4 @@
-function resize(e){//resize, move canvas - zoom, drag
+function resize(e){//resize, move canvas - zoom, draw
   if(Math.sign(e.deltaY) == -1 || CanvasD.zoom > 100){
     stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
@@ -8,6 +8,7 @@ function resize(e){//resize, move canvas - zoom, drag
     let tem3=(acth/2)*CanvasD.zoom/100;
     CanvasD.x+=tem2;
     CanvasD.y+=tem3;
+
     let tem=CanvasD.zoom/100;
     if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
       CanvasD.zoom/=1.1;
@@ -27,7 +28,7 @@ function redraw(){//clear and draw everything
   stx.strokeStyle = "rgba(110, 110, 110, 0.05)";
   busses.forEach(TrackUpdate);
   stx.strokeStyle="black";
-  temporary_1=actw/(CanvasD.zoom*100);
+  temporary_1=actw*(CanvasD.zoom/100)*0.0001;
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
@@ -44,7 +45,7 @@ function TrackUpdate(Ob){//all routes draw
 }
 function StopDraw(Ob){//bus stop draw
   stx.beginPath();
-  stx.arc((CanvasD.x+Ob.x)*CanvasD.zoom/100,(CanvasD.y+Ob.y)*CanvasD.zoom/100,temporary_1, 0, pi2);
+  stx.arc(CanvasD.x+(Ob.x)*CanvasD.zoom/100,CanvasD.y+(Ob.y)*CanvasD.zoom/100,temporary_1, 0, pi2);
   stx.stroke();
 }
 function coorToCanvas(E,N){//coordinates to canvas coordinates
@@ -70,12 +71,11 @@ function move(e){
     CanvasD.y+=dey;
     redraw();
     //console.log([dex,dey]);
-  }/*
-  else{
+  }else{
     prX = e.clientX;
     prY = e.clientY;
-    stops.forEach(StopHover);
-  }*/
+    //stops.forEach(StopHover);
+  }
 }
 function StopHover(Ob){
   if(prX < Ob.x + 3 && prX > Ob.x - 3 && prY > Ob.y - 3 && prY < Ob.y + 3){
