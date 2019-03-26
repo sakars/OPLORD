@@ -5,6 +5,7 @@ body{
   transition: background-color 50s ease;
 }
 canvas{
+user-select: none;
   position: absolute;
   background-color: none;
   opacity: 0;
@@ -25,6 +26,7 @@ video{
   overflow: hidden;
 }
 #LVstars{
+user-select: none;
   display:block;
   zoom: 24%;
   top: -10%;
