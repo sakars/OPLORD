@@ -37,7 +37,7 @@ function BusUpdate(Ob){if(Ob.going){
   //rotate and draw bus
   ttx.translate(CanvasD.x+Ob.x*CanvasD.zoom/100,CanvasD.y+Ob.y*CanvasD.zoom/100);
   ttx.rotate(Math.atan2(dy,dx));
-  drawBus(0, 0, CanvasD.zoom/30, cBusColor);
+  drawBus(0, 0, CanvasD.zoom/20, cBusColor);
   ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-(CanvasD.x+Ob.x*CanvasD.zoom/100),-(CanvasD.y+Ob.y*CanvasD.zoom/100));
 }}

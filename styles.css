@@ -5,7 +5,7 @@ body{
   transition: background-color 50s ease;
 }
 canvas{
-user-select: none;
+  user-select: none;
   position: absolute;
   background-color: none;
   opacity: 0;

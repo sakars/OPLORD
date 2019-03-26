@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 <link href="styles.css" rel="stylesheet">
 <title>Transport</title>
 </head>
@@ -14,6 +15,7 @@
 <canvas id="middle" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
+<canvas id="overlay" width="4000"></canvas>
 <div class="center" id="timeContainer">
   <div class="center" id="timeDisplay">00:00</div>
   <div class="center" id="dayDisplay"></div>
@@ -79,6 +81,9 @@ Your browser does not support video playback.
     stx=stopC.getContext("2d");
     btx=bottomUpdate.getContext("2d");
     ttx=topUpdate.getContext("2d");
+    otx=overlay.getContext("2d");
+    otx.lineWidth = 20;
+    otx.strokeStyle = "black";
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
@@ -96,14 +101,10 @@ Your browser does not support video playback.
     topUpdate.width=actw;
     stopC.height=acth;
     stopC.width=actw;
+    overlay.height=acth;
+    overlay.width=actw;
     mwdw=middle.width/width;
     mhdh=middle.height/height;
-/*
-    mtx.translate((window.innerWidth-actw)/2,0);
-    stx.translate((window.innerWidth-actw)/2,0);
-    btx.translate((window.innerWidth-actw)/2,0);
-    ttx.translate((window.innerWidth-actw)/2,0);
-*/
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
   }
@@ -121,6 +122,7 @@ Your browser does not support video playback.
       loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
       imageContainer.style.opacity = "1";
+      overlay.style.opacity = "1";
       middle.style.opacity = "1";
       middle.style.transition = "filter 50s ease";
       topUpdate.style.opacity = "1";
@@ -136,11 +138,6 @@ Your browser does not support video playback.
     }, 5000);
     mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width,middle.height);
 
-    stx.save();
-    ttx.save();
-    btx.save();
-    mtx.save();
-
     stops.forEach(EyeOpener);
     stops.forEach(StopDraw);
     busses.forEach(coorInit);
@@ -152,11 +149,11 @@ Your browser does not support video playback.
     */
     updateTime();
     //event listeners
-    topUpdate.addEventListener("mousewheel", resize, false);
-    topUpdate.addEventListener("DOMMouseScroll", resize, false);
-    topUpdate.addEventListener("mouseup", function(){down=false;}, false);
-    topUpdate.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
-    topUpdate.addEventListener("mousemove", move, false);
+    overlay.addEventListener("mousewheel", resize, false);
+    overlay.addEventListener("DOMMouseScroll", resize, false);
+    overlay.addEventListener("mouseup", function(){down=false;}, false);
+    overlay.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
+    overlay.addEventListener("mousemove", move, false);
 
     //starts update with 60fps
     interval=setInterval(update,1000/60);
