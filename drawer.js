@@ -28,6 +28,11 @@ function redraw(){//clear and draw everything
   middle.style.filter = lvfilter;
   mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width*CanvasD.zoom/100,middle.height*CanvasD.zoom/100);
+
+  dense.forEach(function(a){
+    mtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
+  });
+
   //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
 }
 function TrackUpdate(Ob){//all routes draw

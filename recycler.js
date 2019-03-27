@@ -6,7 +6,9 @@ var done=false;
 var i=0;
 var troute;
 var errs=[];
+var dense;
 function daritajs(){
+  //split the stops
   var bigA=str.split("\n");
   var IDSaf=[];
   reA=[];
@@ -19,6 +21,7 @@ function daritajs(){
       }
     }
   );
+  //split the routes
   troute=troute.split("\n");
   troute.forEach(function(a){
     if(!a)return;
@@ -43,8 +46,15 @@ function daritajs(){
   for(var i=errs.length-1;i>=0;i--){
     busses.splice(errs[i],1);
   }
+  //split the density
+  dense=dense.split("\n");
+  dense.forEach(function(a,i){
+    dense[i]=a.split("\t");
+    dense[i]=new DensityKm(dense[i][0],dense[i][1],dense[i][2]);
+  });
   done=true;
 }
+
 function recycle(){
   var fileURL = "Stop_Data";
   var xhr = new XMLHttpRequest();
@@ -64,6 +74,18 @@ function daritajs1(){
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       troute=xhr.responseText;
+      daritajs2();
+    }
+  }
+  xhr.send();
+}
+function daritajs2(){
+  var fileURL = "blivums.data";
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', fileURL);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      dense=xhr.responseText;
       daritajs();
     }
   }
