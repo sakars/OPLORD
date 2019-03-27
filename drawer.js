@@ -13,8 +13,6 @@ function resize(e){//resize, move canvas - zoom, draw
       CanvasD.zoom*=1.1;
     }
     pr=e.deltaY;
-    //CanvasD.x=tem2-((tem2-CanvasD.x)/tem*CanvasD.zoom);
-    //CanvasD.y=tem3-((tem3-CanvasD.y)/tem*CanvasD.zoom);
     CanvasD.x=prX*2-((prX*2-CanvasD.x)/(tem/100)*(CanvasD.zoom/100));
     CanvasD.y=prY*2-((prY*2-CanvasD.y)/(tem/100)*(CanvasD.zoom/100));
     redraw();
