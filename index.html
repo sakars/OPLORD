@@ -8,9 +8,9 @@
 <title>Transport</title>
 </head>
 <body id="body">
-<div id = "imageContainer">
+<!--<div id = "imageContainer">
   <img src="Images/LV_stars.png" id = "LVstars">
-</div>
+</div>-->
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
@@ -87,11 +87,11 @@ Your browser does not support video playback.
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
-      acth=latv.height*(middle.width/latv.width)*2;
-      actw=middle.width*2;
+      acth=latv.height*(middle.width/latv.width);
+      actw=middle.width;
     }else{
-      acth=middle.height*2;
-      actw=latv.width*(middle.height/latv.height)*2;
+      acth=middle.height;
+      actw=latv.width*(middle.height/latv.height);
     }
     middle.height=acth;
     bottomUpdate.height=acth;
@@ -121,7 +121,7 @@ Your browser does not support video playback.
     setTimeout(function(){//when lodaer stops fading out
       loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
-      imageContainer.style.opacity = "1";
+      //imageContainer.style.opacity = "1";
       overlay.style.opacity = "1";
       middle.style.opacity = "1";
       middle.style.transition = "filter 50s ease";
@@ -129,9 +129,10 @@ Your browser does not support video playback.
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";
       console2.style.opacity = "1";
-      console2.style.width = (document.body.clientWidth - middle.width - 30) + "px";
-      console2.style.height = (window.innerHeight*2 - 30) + "px";
-      LVstars.style.width = middle.width;
+      console2.style.width = (document.body.clientWidth - middle.width - 14) + "px";
+      console2.style.height = (window.innerHeight - 14) + "px";
+      //imageContainer.style.width = middle.width;
+      //LVstars.style.width = middle.width;
     }, 800);
     setTimeout(function(){//sets body bg transition for normal cycle
       body.style.transition = "background-color 50s ease";

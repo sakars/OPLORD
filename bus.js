@@ -38,7 +38,7 @@ function BusUpdate(Ob){if(Ob.going){
   //rotate and draw bus
   ttx.translate(CanvasD.x+Ob.x*CanvasD.zoom/100,CanvasD.y+Ob.y*CanvasD.zoom/100);
   ttx.rotate(Math.atan2(dy,dx));
-  drawBus(0, 0, CanvasD.zoom/30, cBusColor, Ob.highlighted);
+  drawBus(0, 0, CanvasD.zoom/60, cBusColor, Ob.highlighted);
   ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-(CanvasD.x+Ob.x*CanvasD.zoom/100),-(CanvasD.y+Ob.y*CanvasD.zoom/100));
 }}
@@ -71,19 +71,19 @@ function drawBus(x, y, scale, color, high){//bus design
 }
 function popup(tx, ty){
   otx.fillStyle = "black";
-  otx.fillRect(tx - CanvasD.zoom/10 - 2, ty - CanvasD.zoom/8 - 2, CanvasD.zoom/5 + 4, CanvasD.zoom/11 + 4);
+  otx.fillRect(tx - CanvasD.zoom/20 - 1, ty - CanvasD.zoom/16 - 1, CanvasD.zoom/10 + 2, CanvasD.zoom/22 + 2);
   otx.beginPath();
   otx.moveTo(tx, ty);
-  otx.lineTo(tx - CanvasD.zoom/40, ty - CanvasD.zoom/22);
-  otx.lineTo(tx + CanvasD.zoom/40, ty - CanvasD.zoom/22);
+  otx.lineTo(tx - CanvasD.zoom/80, ty - CanvasD.zoom/44);
+  otx.lineTo(tx + CanvasD.zoom/80, ty - CanvasD.zoom/44);
   otx.closePath();
   otx.stroke();
   otx.fillStyle = "white";
-  otx.fillRect(tx - CanvasD.zoom/10, ty - CanvasD.zoom/8, CanvasD.zoom/5, CanvasD.zoom/11);
+  otx.fillRect(tx - CanvasD.zoom/20, ty - CanvasD.zoom/16, CanvasD.zoom/10, CanvasD.zoom/22);
   otx.beginPath();
   otx.moveTo(tx, ty);
-  otx.lineTo(tx - CanvasD.zoom/40, ty - CanvasD.zoom/22);
-  otx.lineTo(tx + CanvasD.zoom/40, ty - CanvasD.zoom/22);
+  otx.lineTo(tx - CanvasD.zoom/80, ty - CanvasD.zoom/44);
+  otx.lineTo(tx + CanvasD.zoom/80, ty - CanvasD.zoom/44);
   otx.closePath();
   otx.fill();
 }

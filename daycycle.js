@@ -28,7 +28,7 @@ function updateTime(){
     if(localTime >= day34 && pod == "Diena"){
       lvfilter = "brightness(20%)";
       body.style.backgroundColor = "#510a5e";
-      imageContainer.style.opacity = "1";
+      //imageContainer.style.opacity = "1";
       pod = "Vakars";
       cBusColor = "#7aacff";
       redraw();
@@ -36,7 +36,7 @@ function updateTime(){
     else if(localTime >= day2 && pod == "Rīts"){
       lvfilter = "brightness(90%)";
       body.style.backgroundColor = "#901FBA";
-      imageContainer.style.opacity = "0";
+      //imageContainer.style.opacity = "0";
       pod = "Diena";
       cBusColor = "#0e4877";
       redraw();
@@ -44,7 +44,7 @@ function updateTime(){
     else if(localTime >= day4 && pod == "Nakts"){
       lvfilter = "brightness(85%)";
       body.style.backgroundColor = "#a11faf";
-      imageContainer.style.opacity = "0";
+      //imageContainer.style.opacity = "0";
       pod = "Rīts";
       cBusColor = "#0e4877";
       redraw();
@@ -52,7 +52,7 @@ function updateTime(){
     else if(localTime >= 0 && localTime < day4 && pod == "Vakars"){
       lvfilter = "brightness(10%)";
       body.style.backgroundColor = "#220430";
-      imageContainer.style.opacity = "1";
+      //imageContainer.style.opacity = "1";
       pod = "Nakts";
       cBusColor = "#7aacff";
       redraw();
