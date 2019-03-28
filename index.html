@@ -12,6 +12,7 @@
 </div>
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
+<canvas id="densee" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
 <div class="center" id="timeContainer">
@@ -83,6 +84,7 @@ Your browser does not support video playback.
     stx=stopC.getContext("2d");
     btx=bottomUpdate.getContext("2d");
     ttx=topUpdate.getContext("2d");
+    dtx=densee.getContext("2d");
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
@@ -100,6 +102,8 @@ Your browser does not support video playback.
     topUpdate.width=actw;
     stopC.height=acth;
     stopC.width=actw;
+    densee.width=actw;
+    densee.height=acth;
     mwdw=middle.width/width;
     mhdh=middle.height/height;
 /*
@@ -128,6 +132,7 @@ Your browser does not support video playback.
       middle.style.opacity = "1";
       middle.style.transition = "filter 50s ease";
       topUpdate.style.opacity = "1";
+      densee.style.opacity = "1";
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";
       console2.style.opacity = "1";
