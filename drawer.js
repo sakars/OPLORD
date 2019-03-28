@@ -1,6 +1,6 @@
 function resize(e){//resize, move canvas - zoom, draw
-  CanvasClear();
   if(Math.sign(e.deltaY) == -1 || CanvasD.zoom > 100){
+    CanvasClear();
     prX = e.clientX;
     prY = e.clientY;
     let tem=CanvasD.zoom;
