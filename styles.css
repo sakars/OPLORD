@@ -30,7 +30,7 @@ button{
   color: white;
   background: transparent;
   font-family: Montserrat;
-  font-size: 1.75vw;
+  font-size: 1vw;
   width: 50%;
   bottom: 0px;
   padding: 10px 0px;
@@ -65,10 +65,18 @@ button:focus{
 .narvesen{
   height: 100%;
 }
-#n2{
-  right: 0px;
+#nv1, #nv2{
+  font-family: Montserrat;
+  text-shadow: 1px 1px black;
+  font-size: 2vw;
+  position: absolute;
+  transition: all 0.5s ease;
+  color: white;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
-#nv2{
+#n2{
   right: 0px;
 }
 .center{
