@@ -3,17 +3,20 @@
 <head>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 <link href="styles.css" rel="stylesheet">
 <title>Transport</title>
 </head>
 <body id="body">
-<div id = "imageContainer">
+<!--<div id = "imageContainer">
   <img src="Images/LV_stars.png" id = "LVstars">
-</div>
+</div>-->
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
+<canvas id="densee" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
+<canvas id="overlay" width="4000"></canvas>
 <div class="center" id="timeContainer">
   <div class="center" id="timeDisplay">00:00</div>
   <div class="center" id="dayDisplay"></div>
@@ -24,6 +27,10 @@
   <source src="Videos/Animation_load_1_1.mp4" type="video/mp4">
 Your browser does not support video playback.
 </video>
+<!--
+<img height="100%" src="http://reklama.narvesen.lv/berta2/liels/liels.gif">
+<img height="100%" src="Images/Rollerino.gif">
+-->
 <div id="console2"></div>
 <script src="recycler.js"></script>
 <script src="density.js"></script>
@@ -32,7 +39,6 @@ Your browser does not support video playback.
 <script src="Stops.js"></script>
 <script src="daycycle.js"></script>
 <script>
-
   //getting background image
   var latv=new Image();
   latv.src="Images/LV_2_lv_st_19.png";
@@ -80,14 +86,18 @@ Your browser does not support video playback.
     stx=stopC.getContext("2d");
     btx=bottomUpdate.getContext("2d");
     ttx=topUpdate.getContext("2d");
+    otx=overlay.getContext("2d");
+    otx.lineWidth = 20;
+    otx.strokeStyle = "black";
+    dtx=densee.getContext("2d");
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
-      acth=latv.height*(middle.width/latv.width)*2;
-      actw=middle.width*2;
+      acth=latv.height*(middle.width/latv.width);
+      actw=middle.width;
     }else{
-      acth=middle.height*2;
-      actw=latv.width*(middle.height/latv.height)*2;
+      acth=middle.height;
+      actw=latv.width*(middle.height/latv.height);
     }
     middle.height=acth;
     bottomUpdate.height=acth;
@@ -97,14 +107,12 @@ Your browser does not support video playback.
     topUpdate.width=actw;
     stopC.height=acth;
     stopC.width=actw;
+    overlay.height=acth;
+    overlay.width=actw;
+    densee.width=actw;
+    densee.height=acth;
     mwdw=middle.width/width;
     mhdh=middle.height/height;
-/*
-    mtx.translate((window.innerWidth-actw)/2,0);
-    stx.translate((window.innerWidth-actw)/2,0);
-    btx.translate((window.innerWidth-actw)/2,0);
-    ttx.translate((window.innerWidth-actw)/2,0);
-*/
     recycle();//@recycler.js  Gets all files needed and repurpouses them
     waiter();
   }
@@ -121,26 +129,24 @@ Your browser does not support video playback.
     setTimeout(function(){//when lodaer stops fading out
       loader.parentNode.removeChild(loader);
       bottomUpdate.style.opacity = "1";
-      imageContainer.style.opacity = "1";
+      //imageContainer.style.opacity = "1";
+      overlay.style.opacity = "1";
       middle.style.opacity = "1";
       middle.style.transition = "filter 50s ease";
       topUpdate.style.opacity = "1";
+      densee.style.opacity = "1";
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";
       console2.style.opacity = "1";
-      console2.style.width = (document.body.clientWidth - middle.width - 30) + "px";
-      console2.style.height = (window.innerHeight*2 - 30) + "px";
-      LVstars.style.width = middle.width;
+      console2.style.width = (document.body.clientWidth - middle.width - 14) + "px";
+      console2.style.height = (window.innerHeight - 14) + "px";
+      //imageContainer.style.width = middle.width;
+      //LVstars.style.width = middle.width;
     }, 800);
     setTimeout(function(){//sets body bg transition for normal cycle
       body.style.transition = "background-color 50s ease";
     }, 5000);
     mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width,middle.height);
-
-    stx.save();
-    ttx.save();
-    btx.save();
-    mtx.save();
 
     stops.forEach(EyeOpener);
     stops.forEach(StopDraw);
@@ -153,11 +159,12 @@ Your browser does not support video playback.
     */
     updateTime();
     //event listeners
-    topUpdate.addEventListener("mousewheel", resize, false);
-    topUpdate.addEventListener("DOMMouseScroll", resize, false);
-    topUpdate.addEventListener("mouseup", function(){down=false;}, false);
-    topUpdate.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
-    topUpdate.addEventListener("mousemove", move, false);
+    overlay.addEventListener("mousewheel", resize, false);
+    overlay.addEventListener("DOMMouseScroll", resize, false);
+    overlay.addEventListener("mouseup", function(){down=false;}, false);
+    overlay.addEventListener("mousedown", function(e){down=true;prX=e.clientX;prY=e.clientY;}, false);
+    overlay.addEventListener("mousemove", move, false);
+    overlay.addEventListener("click", click, false);
 
     //starts update with 60fps
     interval=setInterval(update,1000/60);

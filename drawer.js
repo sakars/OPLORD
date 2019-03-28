@@ -1,36 +1,37 @@
 function resize(e){//resize, move canvas - zoom, draw
   if(Math.sign(e.deltaY) == -1 || CanvasD.zoom > 100){
-    stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     prX = e.clientX;
     prY = e.clientY;
     let tem=CanvasD.zoom;
     if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
       CanvasD.zoom/=1.1;
-    }else if(CanvasD.zoom<1000 && Math.sign(e.deltaY)==-1){
+    }else if(CanvasD.zoom<1500 && Math.sign(e.deltaY)==-1){
       CanvasD.zoom*=1.1;
     }
     pr=e.deltaY;
-    CanvasD.x=prX*2-((prX*2-CanvasD.x)/(tem/100)*(CanvasD.zoom/100));
-    CanvasD.y=prY*2-((prY*2-CanvasD.y)/(tem/100)*(CanvasD.zoom/100));
+    CanvasD.x=prX-((prX-CanvasD.x)/(tem/100)*(CanvasD.zoom/100));
+    CanvasD.y=prY-((prY-CanvasD.y)/(tem/100)*(CanvasD.zoom/100));
     redraw();
   }
 }
 function redraw(){//clear and draw everything
-  stx.lineWidth = 1;
-  stx.strokeStyle = "rgba(110, 110, 110, 0.05)";
+  stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  dtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  stx.lineWidth = 0.5;
+  stx.strokeStyle = "rgba(110, 110, 110, 0.04)";
   busses.forEach(TrackUpdate);
   stx.strokeStyle="black";
-  temporary_1=actw*(CanvasD.zoom/100)*0.0001;
+  temporary_1=actw*(CanvasD.zoom/100)*0.00015;
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
-  mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width*CanvasD.zoom/100,middle.height*CanvasD.zoom/100);
-
+  dtx.fillStyle="rgba(110, 110, 110, 0.04)";
   dense.forEach(function(a){
-    mtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
+    dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
   });
 
   //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
@@ -55,6 +56,10 @@ function coorToCanvas(E,N){//coordinates to canvas coordinates
 }
 var prX=0;
 var prY=0;
+var hoverX=0;
+var hoverY=0;
+var stopDrawDone = false;
+var highDone = false;
 function move(e){
   if(down){//map drag
     var x = e.clientX;
@@ -63,24 +68,49 @@ function move(e){
     var dey=(y-prY);
     prX=x;
     prY=y;
-    stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     CanvasD.x+=dex;
     CanvasD.y+=dey;
     redraw();
     //console.log([dex,dey]);
   }else{
+    stopDrawDone = false;
+    if(!highDone) otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     prX = e.clientX;
     prY = e.clientY;
-    //console.log(prX,prY);
-    //stops.forEach(StopHover);
+    hoverX = ((e.clientX - CanvasD.x)*100)/CanvasD.zoom;
+    hoverY = ((e.clientY - CanvasD.y)*100)/CanvasD.zoom;
+    if(CanvasD.zoom > 450){
+      stops.forEach(StopHover);
+    }
   }
 }
+function click(){
+  highDone = false;
+  busses.forEach(BusHover);
+}
 function StopHover(Ob){
-  if(prX < Ob.x + 3 && prX > Ob.x - 3 && prY > Ob.y - 3 && prY < Ob.y + 3){
-    stx.fillRect(Ob.x, Ob.y, 10, 10);
+  if(stopDrawDone || highDone) return;
+  if(hoverX <= Ob.x + CanvasD.zoom/500 && hoverX >= Ob.x - CanvasD.zoom/500 && hoverY >= Ob.y - CanvasD.zoom/500 && hoverY <= Ob.y + CanvasD.zoom/500){
+    stopDrawDone = true;
+    popup(CanvasD.x+(Ob.x)*CanvasD.zoom/100, CanvasD.y+(Ob.y)*CanvasD.zoom/100);
+    otx.fillStyle = "black";
+    otx.font = (CanvasD.zoom/(5.2*Ob.name.length) - 30/Ob.name.length) + "px Space Mono";
+    otx.fillText(Ob.name.replace(/\s+$/g, ""), CanvasD.x+(Ob.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(Ob.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - Ob.name.length + 4);
+  }
+}
+function BusHover(Ob){
+  if(highDone) return;
+  Ob.highlighted = false;
+  if(Ob.going && hoverX < Ob.x + 5 && hoverX > Ob.x - 5 && hoverY > Ob.y - 5 && hoverY < Ob.y + 5){
+    otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+    Ob.highlighted = true;
+    highDone = true;
+    Ob.route.forEach(function (A){
+      popup(CanvasD.x+(A.x)*CanvasD.zoom/100, CanvasD.y+(A.y)*CanvasD.zoom/100);
+      otx.fillStyle = "black";
+      otx.font = (CanvasD.zoom/(5.2*A.name.length) - 30/A.name.length) + "px Space Mono";
+      otx.fillText(A.name.replace(/\s+$/g, ""), CanvasD.x+(A.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(A.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - A.name.length + 4);
+    });
   }
 }
 function CanvasD(){
