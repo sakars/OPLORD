@@ -47,13 +47,15 @@ function redraw(){//clear and draw everything
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width*CanvasD.zoom/100,middle.height*CanvasD.zoom/100);
-  dense.forEach(function(a){
-    let ko=a.density;
-    let ceil=1000;
-    if(ko>ceil)ko=ceil;
-    dtx.fillStyle="rgba("+Math.round(66+ko/ceil*115)+","+Math.round(244-ko/ceil*179)+",244,"+(1-0.985+ko/ceil*0.965)+")";
-    dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
-  });
+  if(densee.style.opacity == "1"){
+    dense.forEach(function(a){
+      let ko=a.density;
+      let ceil=1000;
+      if(ko>ceil)ko=ceil;
+      dtx.fillStyle="rgba("+Math.round(66+ko/ceil*115)+","+Math.round(244-ko/ceil*179)+",244,"+(1-0.985+ko/ceil*0.965)+")";
+      dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
+    });
+  }
 
   //btx.drawImage(orangeLayer,-middle.width,-middle.height,middle.width*2,middle.height*2);
 }

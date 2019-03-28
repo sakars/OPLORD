@@ -1,4 +1,4 @@
-var localTime = 0; //time in seconds
+var localTime = 150; //time in seconds
 var day = 0;
 var pod = "Vakars"; //part of day
 var calhours;
