@@ -136,6 +136,9 @@ button:focus{
   font-size: 0.75vw;
 }
 #timeSlider{
+  -moz-appearance: none;
+  border: none;
+  outline: none;
   transition: all 0.5s ease;
   position: absolute;
   top: 2.25vw;
@@ -146,12 +149,27 @@ button:focus{
   outline: none;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 }
+#timeSlider:focus{
+  border: none;
+  outline: none;
+}
 #timeSlider::-webkit-slider-thumb {
   transition: all 0.5s ease;
   -webkit-appearance: none;
   appearance: none;
   width: 0px;
   height: 10px;
+  background: black;
+  cursor: pointer;
+}
+#timeSlider::-moz-range-thumb{
+  border: none;
+  outline: none;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 0px;
   background: black;
   cursor: pointer;
 }
@@ -177,4 +195,8 @@ button:focus{
 }
 #timeContainer:hover #timeSlider::-webkit-slider-thumb{
   width: 10px;
+}
+#timeContainer:hover #timeSlider::-moz-range-thumb{
+  width: 10px;
+  height: 10px;
 }
