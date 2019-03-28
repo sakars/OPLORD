@@ -76,7 +76,7 @@ function updateTime(){
         let extra = "";
         switch(temporary_3[0].name){
           case "Lubāna":
-            let tempRand = random(0, 2);
+            let tempRand = random(0, 3);
             switch(tempRand){
               case 0:
                 extra = ". Uzmanību, nedaudz mitrs!";
@@ -87,7 +87,7 @@ function updateTime(){
               case 2:
                 extra = ". Sargies zivju!";
               break;
-              case 2:
+              case 3:
                 extra = ". Uzmanību - dēles!";
               break;
             }

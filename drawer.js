@@ -1,12 +1,12 @@
 function resize(e){//resize, move canvas - zoom, draw
-  if(Math.sign(e.deltaY) == -1 || CanvasD.zoom > 100){
+  if(Math.sign((e.deltaY)?e.deltaY:e.detail) == -1 || CanvasD.zoom > 100){
     CanvasClear();
     prX = e.clientX;
     prY = e.clientY;
     let tem=CanvasD.zoom;
-    if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
+    if(CanvasD.zoom > 100 && Math.sign((e.deltaY)?e.deltaY:e.detail)==1){
       CanvasD.zoom/=1.1;
-    }else if(CanvasD.zoom<1000 && Math.sign(e.deltaY)==-1){
+    }else if(CanvasD.zoom<1000 && Math.sign((e.deltaY)?e.deltaY:e.detail)==-1){
       CanvasD.zoom*=1.1;
     }
     pr=e.deltaY;
