@@ -56,6 +56,13 @@ function updateTime(){
       pod = "Nakts";
       cBusColor = "#7aacff";
       redraw();
+      dense.forEach(function(a){
+        let ko=a.density;
+        let ceil=1000;
+        if(ko>ceil)ko=ceil;
+        dtx.fillStyle="rgba("+Math.round(66+ko/ceil*115)+","+Math.round(244-ko/ceil*179)+",244,"+(1-0.985+ko/ceil*0.965)+")";
+        dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
+      });
     }
 
     podDisplay.innerHTML = "DD: " + pod;//sets Dienas Dala
