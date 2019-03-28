@@ -23,6 +23,7 @@
   <div class="center" id="podDisplay">POD: Night</div>
 <input class="center" type="range" min="10" max="200" value="10" class="slider" id="timeSlider">
 </div>
+<button class="center" onclick="togo();" id="Togg">Toggle density overlay</button>
 <video class="center" id = "loader" width="2200" height="3600" loop>
   <source src="Videos/Animation_load_1_1.mp4" type="video/mp4">
 Your browser does not support video playback.
@@ -144,6 +145,7 @@ Your browser does not support video playback.
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";
       console2.style.opacity = "1";
+      Togg.style.opacity = "1";
       console2.style.width = (document.body.clientWidth - middle.width - 14) + "px";
       console2.style.height = (window.innerHeight - 14) + "px";
       //imageContainer.style.width = middle.width;

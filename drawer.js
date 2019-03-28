@@ -15,6 +15,18 @@ function resize(e){//resize, move canvas - zoom, draw
     redraw();
   }
 }
+function togo(){
+  if(done){
+    switch(densee.style.opacity){
+      case"1":
+        densee.style.opacity = "0";
+      break;
+      case"0":
+        densee.style.opacity = "1";
+      break;
+    }
+  }
+}
 function CanvasClear(){
   stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
@@ -33,9 +45,11 @@ function redraw(){//clear and draw everything
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width*CanvasD.zoom/100,middle.height*CanvasD.zoom/100);
-  dtx.fillStyle="rgba(110, 110, 110, 0.04)";
   dense.forEach(function(a){
-    dtx.fillStyle="rgba(210, 210, 210, "+(a.density/21000)+");";
+    let ko=a.density;
+    let ceil=1000;
+    if(ko>ceil)ko=ceil;
+    dtx.fillStyle="rgba("+Math.round(66+ko/ceil*115)+","+Math.round(244-ko/ceil*179)+",244,"+(1-0.985+ko/ceil*0.965)+")";
     dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
   });
 
