@@ -9,8 +9,8 @@ function resize(e){//resize, move canvas - zoom, draw
       CanvasD.zoom*=1.1;
     }
     pr=e.deltaY;
-    CanvasD.x=prX*2-((prX*2-CanvasD.x)/(tem/100)*(CanvasD.zoom/100));
-    CanvasD.y=prY*2-((prY*2-CanvasD.y)/(tem/100)*(CanvasD.zoom/100));
+    CanvasD.x=prX-((prX-CanvasD.x)/(tem/100)*(CanvasD.zoom/100));
+    CanvasD.y=prY-((prY-CanvasD.y)/(tem/100)*(CanvasD.zoom/100));
     redraw();
   }
 }
@@ -95,7 +95,7 @@ function StopHover(Ob){
     popup(CanvasD.x+(Ob.x)*CanvasD.zoom/100, CanvasD.y+(Ob.y)*CanvasD.zoom/100);
     otx.fillStyle = "black";
     otx.font = (CanvasD.zoom/(5.2*Ob.name.length) - 30/Ob.name.length) + "px Space Mono";
-    otx.fillText(Ob.name.replace(/\s+$/g, ""), CanvasD.x+(Ob.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(Ob.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - Ob.name.length + 2);
+    otx.fillText(Ob.name.replace(/\s+$/g, ""), CanvasD.x+(Ob.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(Ob.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - Ob.name.length + 4);
   }
 }
 function BusHover(Ob){
@@ -109,7 +109,7 @@ function BusHover(Ob){
       popup(CanvasD.x+(A.x)*CanvasD.zoom/100, CanvasD.y+(A.y)*CanvasD.zoom/100);
       otx.fillStyle = "black";
       otx.font = (CanvasD.zoom/(5.2*A.name.length) - 30/A.name.length) + "px Space Mono";
-      otx.fillText(A.name.replace(/\s+$/g, ""), CanvasD.x+(A.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(A.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - A.name.length + 2);
+      otx.fillText(A.name.replace(/\s+$/g, ""), CanvasD.x+(A.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(A.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - A.name.length + 4);
     });
   }
 }

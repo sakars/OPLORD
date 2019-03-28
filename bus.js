@@ -78,7 +78,7 @@ function popup(tx, ty){
   otx.lineTo(tx + CanvasD.zoom/80, ty - CanvasD.zoom/44);
   otx.closePath();
   otx.stroke();
-  otx.fillStyle = "white";
+  otx.fillStyle = "#e9acf9";
   otx.fillRect(tx - CanvasD.zoom/20, ty - CanvasD.zoom/16, CanvasD.zoom/10, CanvasD.zoom/22);
   otx.beginPath();
   otx.moveTo(tx, ty);
