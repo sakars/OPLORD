@@ -20,7 +20,7 @@ video{
   height: 100%;
 }
 img{
-  position:relative;
+  position:absolute;
 }
 #imageContainer{
   transition: all 5s ease;
