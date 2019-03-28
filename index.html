@@ -27,8 +27,11 @@
   <source src="Videos/Animation_load_1_1.mp4" type="video/mp4">
 Your browser does not support video playback.
 </video>
-<div id = "narvC">
-  <img id = "narvesen" src="http://reklama.narvesen.lv/berta2/liels/liels.gif">
+<div class = "narvC" id = "n1">
+  <img class = "narvesen" src="http://reklama.narvesen.lv/berta2/liels/liels.gif">
+</div>
+<div class = "narvC" id = "n2">
+  <img class = "narvesen" id = "nv2" src="http://reklama.narvesen.lv/berta2/liels/liels.gif">
 </div>
 <!--<img height="100%" src="Images/Rollerino.gif">-->
 <div id="console2"></div>
@@ -50,6 +53,7 @@ Your browser does not support video playback.
   const ttop = 58.44;
 
   //declaring globbal variables
+  var ads = true;
   var stops;
   var down=false;
   var mid=left+width/2;
@@ -123,6 +127,8 @@ Your browser does not support video playback.
     }
     stops=reA;//@recycler.js
     loader.style.opacity = "0";
+    n1.style.opacity = "0";
+    n2.style.opacity = "0";
     loaderTimeout = false;
     Console.log("Sveiki! Šeit redzēsiet visus izbraucošos autobusus!");
     body.style.transition = "background-color 5s ease";
@@ -186,6 +192,10 @@ Your browser does not support video playback.
 
   function fadeIn(){//loader fade at the start
     loader.style.opacity = "1";
+    if(ads){
+      n1.style.opacity = "1";
+      n2.style.opacity = "1";
+    }
     tryLoaderPlay();
     setTimeout(init, 300);
   }
