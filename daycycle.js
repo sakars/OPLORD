@@ -111,7 +111,7 @@ function updateTime(){
             return;
           }
           if(((temporary_2[a.place][0]*60+temporary_2[a.place][1])-(temporary_2[a.place-1][0]*60+temporary_2[a.place-1][1]))<0){
-            if(temporary_2[a.place][0]==temporary_2[a.place-1][0]){
+            if(temporary_2[a.place][0]%24==temporary_2[a.place-1][0]%24){
               temporary_2[a.place][0]+=1;
             }else{
               temporary_2[a.place][0]+=24;
