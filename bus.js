@@ -13,7 +13,7 @@ function Bus(route){
   this.place=0;
   this.x=route[0].x;
   this.y=route[0].y;
-  this.passengerCool=5;
+  this.passengerCool=8;
   this.waited=0;
   this.highlighted=false;
   this.going=false;
