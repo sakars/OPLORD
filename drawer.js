@@ -107,7 +107,7 @@ function StopHover(Ob){
 function BusHover(Ob){
   if(highDone) return;
   Ob.highlighted = false;
-  if(Ob.going && hoverX < Ob.x + CanvasD.zoom/2000 && hoverX > Ob.x - CanvasD.zoom/2000 && hoverY > Ob.y - CanvasD.zoom/2000 && hoverY < Ob.y + CanvasD.zoom/2000){
+  if(Ob.going && hoverX < Ob.x + CanvasD.zoom/1000 && hoverX > Ob.x - CanvasD.zoom/1000 && hoverY > Ob.y - CanvasD.zoom/1000 && hoverY < Ob.y + CanvasD.zoom/1000){
     otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     Ob.highlighted = true;
     console.log(Ob);
