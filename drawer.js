@@ -1,9 +1,5 @@
 function resize(e){//resize, move canvas - zoom, draw
   if(Math.sign(e.deltaY) == -1 || CanvasD.zoom > 100){
-    stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
-    btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     prX = e.clientX;
     prY = e.clientY;
     let tem=CanvasD.zoom;
@@ -24,6 +20,7 @@ function redraw(){//clear and draw everything
   ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+  dtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   stx.lineWidth = 0.5;
   stx.strokeStyle = "rgba(110, 110, 110, 0.04)";
   busses.forEach(TrackUpdate);
@@ -32,7 +29,7 @@ function redraw(){//clear and draw everything
   stops.forEach(StopDraw);
   middle.style.filter = lvfilter;
   mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width*CanvasD.zoom/100,middle.height*CanvasD.zoom/100);
-  dtx.fillStyle="green";
+  dtx.fillStyle="rgba(110, 110, 110, 0.04)";
   dense.forEach(function(a){
     dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
   });
