@@ -57,6 +57,15 @@ img{
   width: 0px;
   background: transparent;
 }
+#narvC{
+  display: none;
+  height: 100%;
+  width: 100px;
+  overflow: hidden;
+}
+#narvesen{
+  height: 100%;
+}
 #timeContainer{
   transition: all 0.5s ease;
   position: absolute;

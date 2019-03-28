@@ -5,7 +5,7 @@ function resize(e){//resize, move canvas - zoom, draw
     let tem=CanvasD.zoom;
     if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
       CanvasD.zoom/=1.1;
-    }else if(CanvasD.zoom<1500 && Math.sign(e.deltaY)==-1){
+    }else if(CanvasD.zoom<1000 && Math.sign(e.deltaY)==-1){
       CanvasD.zoom*=1.1;
     }
     pr=e.deltaY;
@@ -90,25 +90,25 @@ function click(){
 }
 function StopHover(Ob){
   if(stopDrawDone || highDone) return;
-  if(hoverX <= Ob.x + CanvasD.zoom/500 && hoverX >= Ob.x - CanvasD.zoom/500 && hoverY >= Ob.y - CanvasD.zoom/500 && hoverY <= Ob.y + CanvasD.zoom/500){
+  if(hoverX <= Ob.x + CanvasD.zoom/1500 && hoverX >= Ob.x - CanvasD.zoom/1500 && hoverY >= Ob.y - CanvasD.zoom/1500 && hoverY <= Ob.y + CanvasD.zoom/1500){
     stopDrawDone = true;
     popup(CanvasD.x+(Ob.x)*CanvasD.zoom/100, CanvasD.y+(Ob.y)*CanvasD.zoom/100);
     otx.fillStyle = "black";
-    otx.font = (CanvasD.zoom/(5.2*Ob.name.length) - 30/Ob.name.length) + "px Space Mono";
+    otx.font = (CanvasD.zoom/(5.25*Ob.name.length) - 30/Ob.name.length) + "px Space Mono";
     otx.fillText(Ob.name.replace(/\s+$/g, ""), CanvasD.x+(Ob.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(Ob.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - Ob.name.length + 4);
   }
 }
 function BusHover(Ob){
   if(highDone) return;
   Ob.highlighted = false;
-  if(Ob.going && hoverX < Ob.x + 5 && hoverX > Ob.x - 5 && hoverY > Ob.y - 5 && hoverY < Ob.y + 5){
+  if(Ob.going && hoverX < Ob.x + CanvasD.zoom/2000 && hoverX > Ob.x - CanvasD.zoom/2000 && hoverY > Ob.y - CanvasD.zoom/2000 && hoverY < Ob.y + CanvasD.zoom/2000){
     otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     Ob.highlighted = true;
     highDone = true;
     Ob.route.forEach(function (A){
       popup(CanvasD.x+(A.x)*CanvasD.zoom/100, CanvasD.y+(A.y)*CanvasD.zoom/100);
       otx.fillStyle = "black";
-      otx.font = (CanvasD.zoom/(5.2*A.name.length) - 30/A.name.length) + "px Space Mono";
+      otx.font = (CanvasD.zoom/(5.25*A.name.length) - 30/A.name.length) + "px Space Mono";
       otx.fillText(A.name.replace(/\s+$/g, ""), CanvasD.x+(A.x)*CanvasD.zoom/100 - CanvasD.zoom/20 + 1, CanvasD.y+(A.y)*CanvasD.zoom/100 - CanvasD.zoom/44 - A.name.length + 4);
     });
   }
