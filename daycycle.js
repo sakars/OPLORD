@@ -73,7 +73,29 @@ function updateTime(){
     if(!a.going){//sets bus to go if ready
       if(temporary_2[0][0]==calhours && temporary_2[0][1]==calminutes){
         a.going=true;
-        Console.log("Autobuss no " + temporary_3[0].name + " ir izbraucis, galapunktā " + temporary_3[temporary_3.length-1].name + " būs " + String(temporary_2[temporary_2.length-1]).replace(",",":").replace("24:","00:"));
+        let extra = "";
+        switch(temporary_3[0].name){
+          case "Lubāna":
+            let tempRand = random(0, 2);
+            switch(tempRand){
+              case 0:
+                extra = ". Uzmanību, nedaudz mitrs!";
+              break;
+              case 1:
+                extra = ". Brīdinājums: paklāji var slīdēt!";
+              break;
+              case 2:
+                extra = ". Sargies zivju!";
+              break;
+              case 2:
+                extra = ". Uzmanību - dēles!";
+              break;
+            }
+          break;
+        }
+        let hours = String(temporary_2[temporary_2.length-1][0]).length == 1 ? "0" + temporary_2[temporary_2.length-1][0] : String(temporary_2[temporary_2.length-1][0]);
+        let mins = String(temporary_2[temporary_2.length-1][1]).length == 1 ? "0" + temporary_2[temporary_2.length-1][1] : String(temporary_2[temporary_2.length-1][1]);
+        Console.log("Autobuss no " + temporary_3[0].name + " ir izbraucis, galapunktā " + temporary_3[temporary_3.length-1].name + " būs " + String(hours + ":" + mins).replace("24:","00:") + extra);
       }
     }else{//16 updates in one in-game minute
       var sw=false;
