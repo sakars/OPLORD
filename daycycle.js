@@ -81,6 +81,13 @@ function updateTime(){
         if(a.waited==a.passengerCool){//bus stop waiting time
           a.waited=0;
           a.place++;
+          if(a.place==temporary_3.length){//parbauda vai ir galamerki sasniedzis
+            a.going=false;
+            a.place=0;
+            a.x=temporary_3[a.place].x;
+            a.y=temporary_3[a.place].y;
+            return;
+          }
           if(((temporary_2[a.place][0]*60+temporary_2[a.place][1])-(temporary_2[a.place-1][0]*60+temporary_2[a.place-1][1]))<0){
             temporary_2[a.place][0]+=24;
           }
@@ -104,12 +111,7 @@ function updateTime(){
           a.y=temporary_3[a.place].y;
         }
       }
-      if(a.place==temporary_3.length-1){//parbauda vai ir galamerki sasniedzis
-        a.going=false;
-        a.place=0;
-        a.x=temporary_3[a.place].x;
-        a.y=temporary_3[a.place].y;
-      }
+
     }
   });
   setTimeout(updateTime, instantu ? 0 : updateCount);

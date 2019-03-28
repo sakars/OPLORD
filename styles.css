@@ -11,12 +11,16 @@ canvas{
   opacity: 0;
   transition: all 1s ease;
 }
+
 video{
   position: absolute;
   border: 0px 0px 0px 0px;
   opacity: 0;
   transition: all 0.5s ease;
   height: 100%;
+}
+img{
+  position:absolute;
 }
 #imageContainer{
   transition: all 5s ease;

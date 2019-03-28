@@ -13,6 +13,7 @@
 </div>-->
 <canvas id="bottomUpdate" width="4000"></canvas>
 <canvas id="middle" width="4000"></canvas>
+<canvas id="densee" width="4000"></canvas>
 <canvas id="stopC" width="4000"></canvas>
 <canvas id="topUpdate" width="4000"></canvas>
 <canvas id="overlay" width="4000"></canvas>
@@ -20,20 +21,24 @@
   <div class="center" id="timeDisplay">00:00</div>
   <div class="center" id="dayDisplay"></div>
   <div class="center" id="podDisplay">POD: Night</div>
-<input class="center" type="range" min="10" max="50" value="10" class="slider" id="timeSlider">
+<input class="center" type="range" min="10" max="200" value="10" class="slider" id="timeSlider">
 </div>
 <video class="center" id = "loader" width="2200" height="3600" loop>
   <source src="Videos/Animation_load_1_1.mp4" type="video/mp4">
 Your browser does not support video playback.
 </video>
+<!--
+<img height="100%" src="http://reklama.narvesen.lv/berta2/liels/liels.gif">
+<img height="100%" src="Images/Rollerino.gif">
+-->
 <div id="console2"></div>
 <script src="recycler.js"></script>
+<script src="density.js"></script>
 <script src="drawer.js"></script>
 <script src="bus.js"></script>
 <script src="Stops.js"></script>
 <script src="daycycle.js"></script>
 <script>
-
   //getting background image
   var latv=new Image();
   latv.src="Images/LV_2_lv_st_19.png";
@@ -84,6 +89,7 @@ Your browser does not support video playback.
     otx=overlay.getContext("2d");
     otx.lineWidth = 20;
     otx.strokeStyle = "black";
+    dtx=densee.getContext("2d");
     middle.width=window.innerWidth-10;
     middle.height=window.innerHeight;
     if((window.innerWidth/window.innerHeight)<(latv.width/latv.height)){
@@ -103,6 +109,8 @@ Your browser does not support video playback.
     stopC.width=actw;
     overlay.height=acth;
     overlay.width=actw;
+    densee.width=actw;
+    densee.height=acth;
     mwdw=middle.width/width;
     mhdh=middle.height/height;
     recycle();//@recycler.js  Gets all files needed and repurpouses them
@@ -126,6 +134,7 @@ Your browser does not support video playback.
       middle.style.opacity = "1";
       middle.style.transition = "filter 50s ease";
       topUpdate.style.opacity = "1";
+      densee.style.opacity = "1";
       stopC.style.opacity = "1";
       timeContainer.style.opacity = "1";
       console2.style.opacity = "1";
