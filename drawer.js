@@ -20,9 +20,11 @@ function togo(){
     switch(densee.style.opacity){
       case"1":
         densee.style.opacity = "0";
+        Togg.innerHTML = "Ieslēgt blīvuma karti";
       break;
       case"0":
         densee.style.opacity = "1";
+        Togg.innerHTML = "Izslēgt blīvuma karti";
       break;
     }
   }
