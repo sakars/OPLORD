@@ -1,9 +1,10 @@
 function resize(e){//resize, move canvas - zoom, draw
+  CanvasClear();
   if(Math.sign(e.deltaY) == -1 || CanvasD.zoom > 100){
     prX = e.clientX;
     prY = e.clientY;
     let tem=CanvasD.zoom;
-    if(CanvasD.zoom > 100 && Math.sign(e.deltaY)==1){
+    if(CanvasD.zoom > 110 && Math.sign(e.deltaY)==1){
       CanvasD.zoom/=1.1;
     }else if(CanvasD.zoom<1500 && Math.sign(e.deltaY)==-1){
       CanvasD.zoom*=1.1;
@@ -14,13 +15,16 @@ function resize(e){//resize, move canvas - zoom, draw
     redraw();
   }
 }
-function redraw(){//clear and draw everything
+function CanvasClear(){
   stx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   mtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   ttx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   btx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
   dtx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
+}
+function redraw(){//clear and draw everything
+  CanvasClear();
   stx.lineWidth = 0.5;
   stx.strokeStyle = "rgba(110, 110, 110, 0.04)";
   busses.forEach(TrackUpdate);
@@ -68,6 +72,7 @@ function move(e){
     var dey=(y-prY);
     prX=x;
     prY=y;
+    CanvasClear();
     CanvasD.x+=dex;
     CanvasD.y+=dey;
     redraw();
