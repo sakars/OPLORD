@@ -35,6 +35,7 @@ function redraw(){//clear and draw everything
   mtx.drawImage(latv,CanvasD.x,CanvasD.y,middle.width*CanvasD.zoom/100,middle.height*CanvasD.zoom/100);
   dtx.fillStyle="rgba(110, 110, 110, 0.04)";
   dense.forEach(function(a){
+    dtx.fillStyle="rgba(210, 210, 210, "+(a.density/21000)+");";
     dtx.fillRect(a.x*CanvasD.zoom/100+CanvasD.x,a.y*CanvasD.zoom/100+CanvasD.y,0.0016*actw*CanvasD.zoom/100,0.0016*actw*CanvasD.zoom/100);
   });
 
@@ -109,6 +110,7 @@ function BusHover(Ob){
   if(Ob.going && hoverX < Ob.x + 5 && hoverX > Ob.x - 5 && hoverY > Ob.y - 5 && hoverY < Ob.y + 5){
     otx.clearRect(CanvasD.x,CanvasD.y,actw*CanvasD.zoom/100,acth*CanvasD.zoom/100);
     Ob.highlighted = true;
+    console.log(Ob);
     highDone = true;
     Ob.route.forEach(function (A){
       popup(CanvasD.x+(A.x)*CanvasD.zoom/100, CanvasD.y+(A.y)*CanvasD.zoom/100);
