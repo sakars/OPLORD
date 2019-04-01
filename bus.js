@@ -1,9 +1,15 @@
 var cBusColor = "#f4ee42";
-function Bus(route){
+function Bus(route,filename){
+  this.filename=filename;
   this.route=[];
   this.times=[];
   for(var i=0;i<route.length;i++){
-    this.route.push(findById(route[i][0]));
+    try{
+      this.route.push(findById(route[i][0]));
+    }catch(e){
+      console.log(this);
+      console.log("Šis man neiet cauri.");
+    }
     if(route[i][1]){
       this.times.push([Number(route[i][1].substring(0,2)),Number(route[i][1].substring(3,5))]);
     }else{
@@ -20,6 +26,7 @@ function Bus(route){
   this.delta=[];
   this.count=0;
   this.frame=0;
+
 }
 function BusUpdate(Ob){if(Ob.going){
   var destindex=Ob.place;

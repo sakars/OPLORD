@@ -27,12 +27,10 @@ function daritajs(){
     if(!a)return;
     var te=a.split(" ");
     var ti=[];
-    te.forEach(function(a,i){
-      if(i%2==1){
-        ti.push([a,te[i+1]]);
-      }
-    });
-    busses.push(new Bus(ti));
+    for(var i=2;i<te.length;i+=2){
+      ti.push([te[i],te[i+1]]);
+    }
+    busses.push(new Bus(ti,te[1]));
   });
   busses.forEach(function(a, index){
     var k=true;
