@@ -1,6 +1,16 @@
-7175_02.xlsx  5.pietura "puriņi" ni/nk
-7555_02_jauns.xlsx 2.pietura "Buki" ni/nk
-7555_01_jauns.xlsx 24.pietura "Buki" ni/nk
-7931_08_jauns.xlsx 6.pietura "Draudzība" ni/nk
-ni - nepareizs pieturas id
-nk - neparizi pieturas platuma vai garuma grādi
+7175_02.xlsx  5.pietura "puriņi" ?
+7493_06.xlsx 5. pietura Ausmas
+7931_02.xlsx 5.pietura Draudzība
+7175_01.xlsx 10. pietura Puriņi?
+7175_04.xlsx 4.pietura Puriņi?
+7493_01.xlsx 23. pietura Ausmas ???
+7555_02_jauns.xlsx 2.pietura "Buki"
+7555_01_jauns.xlsx 24.pietura "Buki"
+7931_08.xlsx 5. pietura draudzība
+7931_08_jauns.xlsx 6.pietura "Draudzība"
+7004_04.xlsx 2.pietura Centrs Latgale
+7004_01.xlsx 10.pietura N. Rancāna iela
+7175_03.xlsx 10. pietura Puriņi ?
+
+?   varbūt pareizi
+??? varbūt pareizi
