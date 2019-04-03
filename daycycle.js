@@ -129,6 +129,11 @@ function updateTime(){
           a.frame=framec;
           a.delta[0]=(temporary_3[a.place].x-temporary_3[a.place-1].x)/framec;
           a.delta[1]=(temporary_3[a.place].y-temporary_3[a.place-1].y)/framec;
+          if(Math.sqrt(Math.pow(a.delta[0],2)+Math.pow(a.delta[0],2))>1 &&  a.reported==false){
+            a.reported=true;
+            console.log(a);
+            console.log(Math.sqrt(Math.pow(a.delta[0],2)+Math.pow(a.delta[0],2)));
+          }
           sw=true;
         }else{
           a.waited++;

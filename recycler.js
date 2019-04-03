@@ -39,6 +39,7 @@ function daritajs(){
     }
     if(k){
       errs.push(index);
+      console.log(a); 
     }
   });
   for(var i=errs.length-1;i>=0;i--){

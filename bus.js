@@ -26,7 +26,7 @@ function Bus(route,filename){
   this.delta=[];
   this.count=0;
   this.frame=0;
-
+  this.reported=false;
 }
 function BusUpdate(Ob){if(Ob.going){
   var destindex=Ob.place;
@@ -45,7 +45,7 @@ function BusUpdate(Ob){if(Ob.going){
   //rotate and draw bus
   ttx.translate(CanvasD.x+Ob.x*CanvasD.zoom/100,CanvasD.y+Ob.y*CanvasD.zoom/100);
   ttx.rotate(Math.atan2(dy,dx));
-  drawBus(0, 0, CanvasD.zoom/60, cBusColor, Ob.highlighted);
+  drawBus(0, 0, Ob.reported?CanvasD.zoom/20 : CanvasD.zoom/60, cBusColor, Ob.highlighted);
   ttx.rotate(-Math.atan2(dy,dx));
   ttx.translate(-(CanvasD.x+Ob.x*CanvasD.zoom/100),-(CanvasD.y+Ob.y*CanvasD.zoom/100));
 }}
