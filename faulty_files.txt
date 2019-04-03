@@ -1,8 +1,6 @@
 7175_02.xlsx  5.pietura "puriņi" ni/nk
-7493_06.xlsx
-7931_02.xlsx
-7004-01.xlsx
-7175_01.xlsx "putiņi"
-
+7555_02_jauns.xlsx 2.pietura "Buki" ni/nk
+7555_01_jauns.xlsx 24.pietura "Buki" ni/nk
+7931_08_jauns.xlsx 6.pietura "Draudzība" ni/nk
 ni - nepareizs pieturas id
 nk - neparizi pieturas platuma vai garuma grādi
